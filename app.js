@@ -264,11 +264,23 @@ $("#pedido").addEventListener("submit",e=>{
 /* --- paneles --- */
 let abierto=null;
 function abrir(sel){ if(abierto)cerrarSin(); const el=$(sel); el.hidden=false; requestAnimationFrame(()=>{el.classList.add("on");$("#velo").classList.add("on");}); abierto=el; document.body.style.overflow="hidden"; setTimeout(()=>{const f=el.querySelector("[data-cerrar],input");f&&f.focus({preventScroll:true});},60); }
-function cerrarSin(){ const el=abierto; if(!el)return; el.classList.remove("on"); if(el.id==="login")el.hidden=true; else setTimeout(()=>{if(!el.classList.contains("on"))el.hidden=true;},300); abierto=null; }
+function cerrarSin(){ const el=abierto; if(!el)return; el.classList.remove("on"); if(el.id==="login"||el.id==="compartir")el.hidden=true; else setTimeout(()=>{if(!el.classList.contains("on"))el.hidden=true;},300); abierto=null; }
 function cerrar(){ cerrarSin(); $("#velo").classList.remove("on"); if($("#admin").hidden)document.body.style.overflow=""; }
 $("#velo").onclick=cerrar;
 document.querySelectorAll("[data-cerrar]").forEach(b=>b.onclick=cerrar);
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&abierto)cerrar();});
+function abrirCompartir(){
+  const link=DATA.tienda.link||location.href.split("#")[0];
+  $("#compLink").value=link;
+  $("#compWsp").href="https://wa.me/?text="+encodeURIComponent("Mira el catálogo de Organa, cosmética natural en "+(DATA.tienda.ciudad||"Iquique")+": "+link);
+  abrir("#compartir");
+}
+$("#abrirCompartir").onclick=abrirCompartir; $("#abrirCompartir2").onclick=abrirCompartir;
+$("#compCopiar").onclick=async()=>{
+  const i=$("#compLink");
+  try{await navigator.clipboard.writeText(i.value);toast("Link copiado");}
+  catch(e){i.focus();i.select();toast("Link seleccionado: cópialo con Copiar del teclado");}
+};
 $("#abrirCarro").onclick=()=>{pintarCarro();abrir("#carro");};
 $("#flot").onclick=()=>{pintarCarro();abrir("#carro");};
 let tt; function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2200);}

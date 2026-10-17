@@ -4,9 +4,9 @@
   "nombre": "Organa",
   "whatsapp": "56975141739",
   "instagram": "organaiquique",
-  "puntoVenta": "Salvador Allende 448, Condominio Las 4 Reinas",
+  "puntoVenta": "Serrano 932",
   "ciudad": "Iquique",
-  "mapa": "",
+  "mapa": "https://www.google.com/maps/search/?api=1&query=Serrano+932,+Iquique,+Chile",
   "feria": "Expo Emprendedores Iquique",
   "horarios": [
    {
@@ -52,7 +52,8 @@
     "hasta": "19:00"
    }
   ],
-  "notaHorario": "Horario de retiro a coordinar por WhatsApp."
+  "notaHorario": "Horario de retiro a coordinar por WhatsApp.",
+  "link": "https://mtcjmatti-crypto.github.io/ORGANA-/"
  },
  "claveHash": "c95976d1e8036f879f88da6ffe272dd64e10899eb1a32249a9ec54a8472cd8cd",
  "categorias": [
