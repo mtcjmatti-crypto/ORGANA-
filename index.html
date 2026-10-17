@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="img/logo.png">
+<title>Organa Catálogo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Catálogo de cosmética natural Organa, Iquique. Pide por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Federo&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&display=swap">
+<style>
+/* Layout: tienda-catálogo; cabecera fija, portada con foto, categorías desplegables con fichas, ficha en hoja, carrito lateral, panel de administración a pantalla completa. */
+:root{
+  --crema:#efe8d8; --papel:#f8f4ea; --tinta:#3b3a2f; --tinta-suave:#6c6957;
+  --oliva:#7f8f52; --oliva-osc:#5f6d3a; --terracota:#d48f43; --salmon:#eeae97; --lavanda:#9393c4;
+  --linea:#ddd3bd; --sombra:rgba(70,60,30,.14); --wsp:#2f8f55; --wsp-txt:#ffffff;
+  --ok:#3f8a4f; --alerta:#b8572f; --logo-filter:none;
+  --f-display:"Federo","Josefin Sans","Trebuchet MS",serif;
+  --f-body:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:18px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --crema:#23241b; --papel:#2c2d22; --tinta:#efe9d9; --tinta-suave:#b9b39d;
+  --oliva:#a8b874; --oliva-osc:#c4d290; --terracota:#e6a660; --salmon:#e7a28b; --lavanda:#a9a9dd;
+  --linea:#44453a; --sombra:rgba(0,0,0,.4); --wsp:#3aa968; --wsp-txt:#0f1f14;
+  --ok:#7fc58c; --alerta:#f0956c; --logo-filter:invert(.92); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --crema:#23241b; --papel:#2c2d22; --tinta:#efe9d9; --tinta-suave:#b9b39d;
+  --oliva:#a8b874; --oliva-osc:#c4d290; --terracota:#e6a660; --salmon:#e7a28b; --lavanda:#a9a9dd;
+  --linea:#44453a; --sombra:rgba(0,0,0,.4); --wsp:#3aa968; --wsp-txt:#0f1f14;
+  --ok:#7fc58c; --alerta:#f0956c; --logo-filter:invert(.92); color-scheme:dark }
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{margin:0}
+body{background:var(--crema);color:var(--tinta);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--papel)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0;letter-spacing:.02em}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--terracota);outline-offset:2px;border-radius:8px}
+.precio{font-variant-numeric:tabular-nums;font-weight:700}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 20px;font-weight:700;border:0;text-decoration:none;cursor:pointer}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-oliva{background:var(--oliva);color:var(--papel)}
+.btn-wsp{background:var(--wsp);color:var(--wsp-txt)}
+.btn-suave{background:var(--crema);color:var(--tinta);box-shadow:inset 0 0 0 1.5px var(--linea)}
+.btn-peligro{background:transparent;color:var(--alerta);box-shadow:inset 0 0 0 1.5px var(--alerta)}
+.btn-chico{padding:8px 14px;font-size:.88rem}
+
+/* Cabecera */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--papel);border-bottom:1px solid var(--linea)}
+.top .wrap{display:flex;align-items:center;gap:12px;padding-block:10px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;min-width:0}
+.marca img{width:44px;height:auto;filter:var(--logo-filter);flex:none}
+.marca b{font-family:var(--f-display);font-weight:400;font-size:1.5rem;letter-spacing:.08em;color:var(--oliva-osc)}
+.marca small{display:block;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--tinta-suave);margin-top:-4px}
+.top .sp{flex:1}
+.estado-tienda{font-size:.78rem;font-weight:700;padding:5px 11px;border-radius:999px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.estado-tienda::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.estado-tienda.abierto{color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.estado-tienda.cerrado{color:var(--alerta);background:color-mix(in srgb,var(--alerta) 14%,transparent)}
+@media (max-width:520px){.estado-tienda{display:none}.marca img{width:34px}.marca small{display:none}.marca b{font-size:1.35rem}.btn-carro{padding:9px 13px}}
+.btn-carro{display:flex;align-items:center;gap:8px;border:0;background:var(--oliva);color:var(--papel);padding:10px 16px;border-radius:999px;font-weight:700;flex:none}
+.btn-carro .n{background:var(--papel);color:var(--oliva-osc);min-width:24px;height:24px;border-radius:12px;display:grid;place-items:center;font-size:.8rem;padding:0 6px}
+
+/* Portada */
+.hero{position:relative;overflow:hidden;background:var(--oliva)}
+.hero .foto{position:absolute;inset:0;background:url(img/hero.jpg) center 40%/cover}
+.hero .foto::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(40,44,22,.72) 0%,rgba(40,44,22,.35) 55%,rgba(40,44,22,0) 100%)}
+.hero .wrap{position:relative;padding-block:clamp(48px,9vw,110px) clamp(70px,10vw,120px);color:#fbf7ec}
+.hero .eyebrow{font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;opacity:.9}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem);line-height:1;margin:.25em 0 .2em}
+.hero p{max-width:30ch;font-size:clamp(1rem,2vw,1.15rem);margin:0 0 22px;font-weight:300}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn-claro{background:#fbf7ec;color:#4e5a2d}
+.btn-borde{background:transparent;color:#fbf7ec;box-shadow:inset 0 0 0 1.5px rgba(251,247,236,.8)}
+.ola{position:absolute;left:0;right:0;bottom:-1px;height:48px;width:100%;display:block}
+.ola path{fill:var(--crema)}
+
+/* Filtros */
+.filtros{padding-block:8px 6px}
+.filtros h2{font-size:clamp(1.5rem,3.4vw,2.1rem);color:var(--oliva-osc)}
+.filtros .sub{color:var(--tinta-suave);margin:4px 0 14px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.chip{flex:none;border:1.5px solid var(--linea);background:var(--papel);border-radius:999px;padding:8px 15px;font-weight:600;font-size:.92rem;display:flex;gap:6px;align-items:center}
+.chip .c{font-size:.75rem;color:var(--tinta-suave);font-weight:600}
+.chip[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--papel)}
+.chip[aria-pressed="true"] .c{color:inherit;opacity:.75}
+.barra-busq{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.buscar{display:flex;align-items:center;gap:8px;background:var(--papel);border:1.5px solid var(--linea);border-radius:999px;padding:0 14px;flex:1;min-width:0;max-width:420px}
+.buscar input{border:0;background:transparent;padding:10px 0;flex:1;min-width:0;outline:none}
+.buscar svg{flex:none;stroke:var(--tinta-suave)}
+.link-suave{border:0;background:transparent;color:var(--tinta-suave);font-weight:600;text-decoration:underline;padding:6px 4px;font-size:.9rem}
+
+/* Categorías desplegables */
+main{padding-block:12px 60px;display:flex;flex-direction:column;gap:12px}
+.cat{background:var(--papel);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 0 var(--linea)}
+.cat-cab{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:52px 1fr auto auto;gap:14px;align-items:center;padding:12px 18px 12px 12px}
+.cat-cab:focus-visible{outline:3px solid var(--terracota);outline-offset:-3px}
+.cat-mini{width:52px;height:52px;border-radius:14px;background:var(--linea) center/cover}
+.cat-cab h3{font-size:1.35rem;line-height:1.15}
+.cat-cab .muestra{display:block;font-family:var(--f-body);font-size:.82rem;color:var(--tinta-suave);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.cat-cab>span:nth-child(2){min-width:0}
+.cat-cab .cuenta{font-size:.82rem;font-weight:700;color:var(--tinta-suave);background:var(--crema);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.chev{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--crema);transition:transform .25s}
+.cat[data-open="true"] .chev{transform:rotate(180deg)}
+.cat-cuerpo{padding:4px 16px 18px}
+.cat[data-open="false"] .cat-cuerpo{display:none}
+@media (max-width:520px){.cat-cab{grid-template-columns:44px 1fr auto;gap:10px;padding:10px 12px 10px 10px}.cat-mini{width:44px;height:44px}.cat-cab .cuenta{display:none}.cat-cab h3{font-size:1.2rem}.cat-cuerpo{padding:2px 10px 14px}}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+@media (max-width:520px){.grid{grid-template-columns:1fr 1fr;gap:10px}}
+.card{display:flex;flex-direction:column;background:var(--crema);border-radius:16px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 26px var(--sombra)}
+.card .ver{all:unset;cursor:pointer;display:flex;flex-direction:column;flex:1}
+.card .ver:focus-visible{outline:3px solid var(--terracota);outline-offset:-3px}
+.card .img{aspect-ratio:4/5;background:var(--linea) center/cover;position:relative;max-width:100%}
+.card .tag{position:absolute;left:10px;top:10px;background:var(--papel);color:var(--tinta);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;max-width:calc(100% - 20px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .tag.agotado{background:var(--alerta);color:#fff}
+.card.es-agotado .img{filter:grayscale(.6) opacity(.8)}
+.card .info{padding:12px 14px 4px;display:flex;flex-direction:column;gap:2px;flex:1}
+.card .nombre{font-family:var(--f-display);font-size:1.1rem;line-height:1.2}
+.card .med{font-size:.82rem;color:var(--tinta-suave)}
+.card .pie{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px 14px}
+.card .desde{font-size:.72rem;color:var(--tinta-suave);display:block;line-height:1}
+.card .precio{font-size:1.08rem}
+.mas{flex:none;width:42px;height:42px;border-radius:50%;border:0;background:var(--terracota);color:#fff;display:grid;place-items:center;font-size:1.5rem;line-height:1}
+.mas[disabled]{background:var(--linea);color:var(--tinta-suave);cursor:not-allowed}
+@media (max-width:520px){.card .nombre{font-size:.98rem}.card .info{padding:10px 10px 2px}.card .pie{padding:8px 10px 12px}.mas{width:38px;height:38px}}
+.vacio{padding:40px 0;color:var(--tinta-suave);text-align:center}
+
+/* Contacto */
+.contacto{background:var(--salmon);color:#3a2a20}
+.contacto .wrap{padding-block:46px;display:grid;grid-template-columns:auto 1fr 1fr;gap:32px;align-items:start}
+.contacto img{width:120px}
+.contacto h2{font-size:2rem;margin-bottom:8px}
+.contacto h4{margin:0 0 8px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}
+.contacto p{margin:4px 0}
+.contacto a{color:inherit;font-weight:700}
+.horas{width:100%;border-collapse:collapse;font-size:.95rem;font-variant-numeric:tabular-nums}
+.horas td{padding:4px 0;border-bottom:1px solid rgba(58,42,32,.15)}
+.horas td:last-child{text-align:right}
+.horas tr.hoy td{font-weight:700}
+@media (max-width:760px){.contacto .wrap{grid-template-columns:1fr;text-align:left}}
+footer.pie-pag{background:var(--lavanda);color:#fff;font-size:.85rem}
+footer.pie-pag .wrap{padding-block:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer.pie-pag button{border:0;background:transparent;color:#fff;opacity:.85;text-decoration:underline;font-size:.85rem;padding:0}
+
+/* Velo + paneles */
+.velo{position:fixed;inset:0;background:rgba(30,28,18,.5);z-index:50;opacity:0;pointer-events:none;transition:opacity .25s}
+.velo.on{opacity:1;pointer-events:auto}
+.ficha{position:fixed;z-index:60;background:var(--papel);display:flex;flex-direction:column;overflow:hidden;
+  left:50%;top:50%;width:min(980px,calc(100vw - 32px));height:min(88vh,780px);border-radius:24px;transform:translate(-50%,-46%);opacity:0;pointer-events:none;transition:transform .28s,opacity .2s}
+.ficha.on{opacity:1;transform:translate(-50%,-50%);pointer-events:auto}
+.ficha .cuerpo{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);height:100%;min-height:0}
+.ficha .foto{background:var(--linea) center/cover;height:100%}
+.ficha .det{overflow-y:auto;padding:28px 30px 26px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.ficha h2{font-size:clamp(1.6rem,3.5vw,2.2rem);line-height:1.1;color:var(--oliva-osc)}
+.ficha .cats{display:flex;gap:6px;flex-wrap:wrap}
+.ficha .cats span{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--crema);color:var(--tinta-suave)}
+.ficha .cabeza{display:flex;flex-direction:column;gap:6px}
+.ficha .nota{color:var(--terracota);font-weight:700;margin:0}
+.ficha .med{color:var(--tinta-suave);font-size:.92rem;margin:0}
+.ficha .precio-grande{font-size:1.6rem}
+.aviso-agotado{background:color-mix(in srgb,var(--alerta) 14%,transparent);color:var(--alerta);font-weight:700;padding:10px 14px;border-radius:12px;margin:0}
+.lbl{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--tinta-suave);margin-bottom:6px;display:block}
+.vars{display:flex;flex-direction:column;gap:8px}
+.var{display:flex;align-items:center;gap:10px;justify-content:space-between;text-align:left;border:1.5px solid var(--linea);background:transparent;border-radius:14px;padding:10px 14px}
+.var small{display:block;color:var(--tinta-suave);font-size:.82rem;line-height:1.4;margin-top:2px}
+.var[aria-checked="true"]{border-color:var(--oliva);background:color-mix(in srgb,var(--oliva) 12%,transparent)}
+.var .precio{white-space:nowrap}
+select.sel,input.inp,textarea.inp{width:100%;border:1.5px solid var(--linea);background:var(--crema);border-radius:12px;padding:10px 12px}
+textarea.inp{resize:vertical;line-height:1.5}
+.fila{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cant{display:flex;align-items:center;border:1.5px solid var(--linea);border-radius:999px;overflow:hidden}
+.cant button{border:0;background:transparent;width:40px;height:40px;font-size:1.2rem}
+.cant span{min-width:28px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.total-ficha{margin-left:auto;font-size:1.4rem}
+.acciones{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.desc-bloque{border-top:1px solid var(--linea);padding-top:16px}
+.desc-bloque h3{font-size:1.25rem;color:var(--oliva-osc);margin-bottom:10px}
+.desc{color:var(--tinta);font-size:1rem;line-height:1.7;max-width:62ch;display:flex;flex-direction:column;gap:10px}
+.desc p{margin:0}
+.desc ul,.desc ol{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
+.desc li::marker{color:var(--oliva)}
+.desc .intro{font-size:1.05rem}
+.cerrar{position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:50%;border:0;background:var(--papel);box-shadow:0 2px 10px var(--sombra);font-size:1.3rem;display:grid;place-items:center;z-index:2}
+@media (max-width:760px){
+  .ficha{left:0;right:0;top:auto;bottom:0;width:100%;height:auto;max-height:92vh;border-radius:24px 24px 0 0;transform:translateY(100%)}
+  .ficha.on{transform:translateY(0)}
+  .ficha .cuerpo{display:block;overflow-y:auto;height:auto;max-height:92vh}
+  .ficha .foto{aspect-ratio:4/3;height:auto;max-width:100%}
+  .ficha .det{overflow:visible;padding:18px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  .acciones{grid-template-columns:1fr}
+}
+
+/* Carrito */
+.carro{position:fixed;z-index:60;top:0;right:0;bottom:0;width:min(440px,100vw);background:var(--papel);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .28s;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.carro.on{transform:none}
+.carro .cab{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--linea)}
+.carro .cab h2{font-size:1.6rem;color:var(--oliva-osc)}
+.carro .cab button{border:0;background:transparent;font-size:1.5rem;width:40px;height:40px}
+.carro .lista{flex:1;overflow:auto;padding:8px 20px;min-height:0}
+.item{display:grid;grid-template-columns:56px 1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid var(--linea);align-items:center}
+.item .mini{width:56px;height:56px;border-radius:12px;background:var(--linea) center/cover}
+.item .t{font-weight:700;line-height:1.25}
+.item .v{font-size:.82rem;color:var(--tinta-suave)}
+.item .der{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.item .cant button{width:30px;height:30px;font-size:1rem}
+.item .quitar{border:0;background:transparent;color:var(--tinta-suave);font-size:.78rem;text-decoration:underline;padding:0}
+.carro .vacio-c{padding:40px 10px;text-align:center;color:var(--tinta-suave)}
+.carro .pedido{border-top:1px solid var(--linea);padding:14px 20px 18px;display:flex;flex-direction:column;gap:10px;overflow:auto;max-height:60vh}
+.carro .tot{display:flex;justify-content:space-between;align-items:baseline;font-size:1.05rem}
+.carro .tot .precio{font-size:1.5rem}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dos label{border:1.5px solid var(--linea);border-radius:12px;padding:9px 10px;display:flex;gap:8px;align-items:center;font-size:.9rem;cursor:pointer}
+.dos input{accent-color:var(--oliva)}
+.dos label:has(input:checked){border-color:var(--oliva);background:color-mix(in srgb,var(--oliva) 12%,transparent)}
+.aviso{font-size:.8rem;color:var(--tinta-suave);margin:0}
+.flot{position:fixed;z-index:35;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:none;align-items:center;gap:10px;background:var(--wsp);color:var(--wsp-txt);border:0;border-radius:999px;padding:13px 18px;font-weight:700;box-shadow:0 8px 24px var(--sombra)}
+.flot.on{display:flex}
+.toast{position:fixed;z-index:90;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--tinta);color:var(--papel);padding:10px 18px;border-radius:999px;font-weight:600;opacity:0;transition:.25s;pointer-events:none;max-width:calc(100vw - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* Acceso y panel de administración */
+.login{position:fixed;z-index:70;left:50%;top:50%;transform:translate(-50%,-50%);width:min(380px,calc(100vw - 32px));background:var(--papel);border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 60px var(--sombra)}
+.login h2{font-size:1.6rem;color:var(--oliva-osc)}
+.login .err{color:var(--alerta);font-weight:600;font-size:.9rem;margin:0}
+.admin{position:fixed;inset:0;z-index:65;background:var(--crema);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.adm-top{background:var(--tinta);color:var(--papel)}
+.adm-top .wrap{display:flex;align-items:center;gap:12px;padding-block:12px;flex-wrap:wrap}
+.adm-top h2{font-size:1.35rem}
+.adm-top .sp{flex:1}
+.adm-estado{font-size:.82rem;opacity:.85}
+.adm-estado.pend{color:var(--salmon);opacity:1;font-weight:700}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--linea);background:var(--papel);overflow-x:auto}
+.tabs .wrap{display:flex;gap:4px;width:100%}
+.tab{border:0;background:transparent;padding:14px 16px;font-weight:700;color:var(--tinta-suave);border-bottom:3px solid transparent;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--oliva-osc);border-bottom-color:var(--oliva)}
+.adm-cuerpo{flex:1;overflow:auto;min-height:0}
+.adm-cuerpo .wrap{padding-block:20px 60px}
+.adm-barra{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.adm-barra .buscar{max-width:320px}
+.adm-barra select{max-width:220px}
+.adm-grupo{margin-bottom:22px}
+.adm-grupo h3{font-size:1.2rem;margin-bottom:8px;color:var(--oliva-osc)}
+.adm-fila{display:grid;grid-template-columns:48px minmax(0,1fr) auto auto;gap:12px;align-items:center;background:var(--papel);border-radius:14px;padding:8px 12px 8px 8px;margin-bottom:6px}
+.adm-fila .mini{width:48px;height:48px;border-radius:10px;background:var(--linea) center/cover}
+.adm-fila .t{font-weight:700;line-height:1.25}
+.adm-fila .s{font-size:.82rem;color:var(--tinta-suave)}
+.pill{font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.pill.disponible{color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.pill.agotado{color:var(--alerta);background:color-mix(in srgb,var(--alerta) 14%,transparent)}
+.pill.oculto{color:var(--tinta-suave);background:var(--crema);box-shadow:inset 0 0 0 1px var(--linea)}
+.adm-fila .acc{display:flex;gap:4px}
+.ico{width:36px;height:36px;border-radius:10px;border:0;background:var(--crema);display:grid;place-items:center;font-size:1rem}
+@media (max-width:600px){.adm-fila{grid-template-columns:44px minmax(0,1fr) auto}.adm-fila .pill{display:none}}
+.form{display:flex;flex-direction:column;gap:16px;max-width:760px}
+.form .campo{display:flex;flex-direction:column}
+.form .dos-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:600px){.form .dos-col{grid-template-columns:1fr}}
+.tarjeta{background:var(--papel);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.tarjeta h3{font-size:1.25rem;color:var(--oliva-osc)}
+.ayuda{font-size:.82rem;color:var(--tinta-suave);margin:4px 0 0}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.checks label{display:flex;gap:6px;align-items:center;border:1.5px solid var(--linea);border-radius:999px;padding:6px 12px;font-size:.9rem;cursor:pointer}
+.checks label:has(input:checked){border-color:var(--oliva);background:color-mix(in srgb,var(--oliva) 12%,transparent)}
+.checks input{accent-color:var(--oliva)}
+.var-ed{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.3fr) 120px 36px;gap:8px;align-items:start}
+.var-ed .inp{padding:8px 10px}
+@media (max-width:600px){.var-ed{grid-template-columns:1fr 110px 36px}.var-ed .det-in{grid-column:1 / -1;order:5}}
+.precio-in{position:relative}
+.precio-in span{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--tinta-suave)}
+.precio-in input{padding-left:22px!important;font-variant-numeric:tabular-nums}
+.foto-ed{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.foto-ed .mini{width:96px;height:120px;border-radius:12px;background:var(--linea) center/cover;flex:none}
+.hor-fila{display:grid;grid-template-columns:110px auto 1fr 1fr;gap:10px;align-items:center}
+.hor-fila .inp{padding:8px 10px}
+@media (max-width:600px){.hor-fila{grid-template-columns:90px auto 1fr 1fr;gap:6px}}
+.switch{display:flex;align-items:center;gap:6px;font-size:.88rem}
+.switch input{accent-color:var(--oliva);width:18px;height:18px}
+.pie-form{position:sticky;bottom:0;background:var(--crema);padding-block:12px;display:flex;gap:10px;flex-wrap:wrap;border-top:1px solid var(--linea)}
+.confirmar{background:color-mix(in srgb,var(--alerta) 12%,var(--papel));border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Organa, inicio">
+      <img src="img/logo.png" alt="">
+      <span><b>Organa</b><small>Bienestar natural</small></span>
+    </a>
+    <span class="sp"></span>
+    <span class="estado-tienda" id="estadoTienda" hidden></span>
+    <button class="btn-carro" id="abrirCarro" aria-label="Ver carrito">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      <span>Carrito</span><span class="n" id="nCarro">0</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="foto" role="img" aria-label="Productos naturales Organa"></div>
+  <div class="wrap">
+    <div class="eyebrow">Cosmética natural · <span id="heroCiudad">Iquique</span></div>
+    <h1>Organa</h1>
+    <p>Productos para el cuidado y bienestar del cuerpo y mente.</p>
+    <div class="cta">
+      <a class="btn btn-claro" href="#catalogo">Ver catálogo</a>
+      <a class="btn btn-borde" id="wspHero" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+    </div>
+  </div>
+  <svg class="ola" viewBox="0 0 1440 48" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C 240 0, 480 48, 720 26 S 1200 4, 1440 28 L1440 48 L0 48 Z"/></svg>
+</section>
+
+<section class="filtros wrap" id="catalogo">
+  <h2>Catálogo</h2>
+  <p class="sub">Abre una categoría, toca un producto para ver sus detalles y arma tu pedido.</p>
+  <div class="chips" id="chips" role="toolbar" aria-label="Ir a categoría"></div>
+  <div class="barra-busq">
+    <label class="buscar" for="q">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" type="search" placeholder="Buscar: caléndula, shampoo, roll on…" autocomplete="off">
+    </label>
+    <button class="link-suave" id="abrirTodas" type="button">Abrir todas</button>
+  </div>
+</section>
+
+<main class="wrap" id="productos"><p class="vacio">Cargando catálogo…</p></main>
+
+<section class="contacto" id="contacto">
+  <div class="wrap">
+    <img src="img/logo.png" alt="Logo Organa">
+    <div>
+      <h2>Contacto</h2>
+      <p>Pedidos por WhatsApp: <a id="wspContacto" target="_blank" rel="noopener"></a></p>
+      <p id="feriaP">Nos encuentras en <span id="feria"></span>.</p>
+      <p>Punto de venta y retiros: <span id="retiro"></span>. <a id="mapa" target="_blank" rel="noopener" hidden>Ver mapa</a></p>
+      <p>Síguenos en Instagram <a id="ig" target="_blank" rel="noopener"></a></p>
+    </div>
+    <div>
+      <h4>Horario de atención</h4>
+      <table class="horas" id="horas"></table>
+      <p id="notaHorario" style="margin-top:8px"></p>
+    </div>
+  </div>
+</section>
+<footer class="pie-pag"><div class="wrap"><span>Organa · Cosmética natural hecha en Iquique</span><button id="abrirLogin" type="button">Administrar</button></div></footer>
+
+<button class="flot" id="flot" aria-label="Ver pedido">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2 .7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
+  <span id="flotTxt">Ver pedido</span>
+</button>
+
+<div class="velo" id="velo"></div>
+
+<div class="ficha" id="ficha" role="dialog" aria-modal="true" aria-labelledby="fNombre" hidden>
+  <button class="cerrar" data-cerrar aria-label="Cerrar">×</button>
+  <div class="cuerpo">
+    <div class="foto" id="fFoto" role="img"></div>
+    <div class="det">
+      <div class="cabeza">
+        <div class="cats" id="fCats"></div>
+        <h2 id="fNombre"></h2>
+        <p class="nota" id="fNota"></p>
+        <p class="med" id="fMed"></p>
+      </div>
+      <p class="aviso-agotado" id="fAgotado" hidden>Producto agotado por ahora. Puedes consultar por WhatsApp cuándo vuelve.</p>
+      <div id="fVarsWrap"><span class="lbl">Elige una opción</span><div class="vars" id="fVars" role="radiogroup"></div></div>
+      <div id="fOpWrap"><label class="lbl" for="fOp" id="fOpLbl">Aroma</label><select class="sel" id="fOp"></select></div>
+      <div class="fila">
+        <div class="cant" aria-label="Cantidad"><button id="fMenos" aria-label="Quitar uno">−</button><span id="fCant">1</span><button id="fMas" aria-label="Agregar uno">+</button></div>
+        <span class="total-ficha precio" id="fTotal"></span>
+      </div>
+      <div class="acciones">
+        <button class="btn btn-oliva" id="fAgregar">Agregar al carrito</button>
+        <a class="btn btn-wsp" id="fPedir" target="_blank" rel="noopener">Pedir solo este</a>
+      </div>
+      <div class="desc-bloque"><h3>Descripción y beneficios</h3><div class="desc" id="fDesc"></div></div>
+    </div>
+  </div>
+</div>
+
+<aside class="carro" id="carro" role="dialog" aria-modal="true" aria-labelledby="carroTit" hidden>
+  <div class="cab"><h2 id="carroTit">Tu pedido</h2><button data-cerrar aria-label="Cerrar">×</button></div>
+  <div class="lista" id="lista"></div>
+  <form class="pedido" id="pedido">
+    <div class="tot"><span>Total</span><span class="precio" id="total">$0</span></div>
+    <div>
+      <label class="lbl" for="cNombre">Tu nombre</label>
+      <input class="inp" id="cNombre" required autocomplete="name" placeholder="Ej: Camila Rojas">
+    </div>
+    <div>
+      <span class="lbl">Entrega</span>
+      <div class="dos">
+        <label><input type="radio" name="entrega" id="eRetiro" value="retiro" checked> Retiro</label>
+        <label><input type="radio" name="entrega" id="eDespacho" value="despacho"> Despacho</label>
+      </div>
+      <p class="aviso" id="avisoEntrega" style="margin-top:6px"></p>
+    </div>
+    <div id="dirWrap" hidden>
+      <label class="lbl" for="cDir">Dirección</label>
+      <input class="inp" id="cDir" autocomplete="street-address" placeholder="Calle, número, sector">
+    </div>
+    <div>
+      <label class="lbl" for="cNota">Comentario (opcional)</label>
+      <textarea class="inp" id="cNota" rows="2" placeholder="Horario, preguntas, etc."></textarea>
+    </div>
+    <button class="btn btn-wsp" type="submit">Enviar pedido por WhatsApp</button>
+    <p class="aviso">Se abrirá WhatsApp con tu pedido listo para enviar a <b id="numVis"></b>. Confirmaremos stock y forma de pago por ahí.</p>
+  </form>
+</aside>
+
+<form class="login" id="login" hidden>
+  <h2>Panel de administración</h2>
+  <div><label class="lbl" for="clave">Clave</label><input class="inp" id="clave" type="password" autocomplete="current-password" required></div>
+  <p class="err" id="loginErr" hidden>Clave incorrecta. Revisa mayúsculas y vuelve a intentar.</p>
+  <div class="fila"><button class="btn btn-oliva" type="submit">Entrar</button><button class="btn btn-suave" type="button" data-cerrar>Cancelar</button></div>
+</form>
+
+<div class="admin" id="admin" hidden>
+  <div class="adm-top"><div class="wrap">
+    <h2>Administrar Organa</h2>
+    <span class="adm-estado" id="admEstado">Sin cambios</span>
+    <span class="sp"></span>
+    <button class="btn btn-chico btn-wsp" id="admPublicar" type="button" disabled>Publicar cambios</button>
+    <button class="btn btn-chico btn-suave" id="admSalir" type="button">Salir</button>
+  </div></div>
+  <div class="tabs" role="tablist"><div class="wrap">
+    <button class="tab" role="tab" data-tab="productos" aria-selected="true">Productos</button>
+    <button class="tab" role="tab" data-tab="tienda" aria-selected="false">Tienda y horarios</button>
+    <button class="tab" role="tab" data-tab="categorias" aria-selected="false">Categorías</button>
+    <button class="tab" role="tab" data-tab="clave" aria-selected="false">Clave</button>
+  </div></div>
+  <div class="adm-cuerpo" id="admCuerpo"><div class="wrap" id="admVista"></div></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
