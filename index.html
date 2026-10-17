@@ -71,7 +71,15 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;backgroun
 
 /* Portada */
 .hero{position:relative;overflow:hidden;background:var(--oliva)}
-.hero .foto{position:absolute;inset:0;background:url(img/hero.jpg) center 40%/cover}
+.hero .slides{position:absolute;inset:0}
+.hero .foto{position:absolute;inset:0;background:center 40%/cover no-repeat;opacity:0;transition:opacity 1.4s ease}
+.hero .foto.on{opacity:1;animation:acercar 7s ease-out both}
+@keyframes acercar{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero .puntos{position:absolute;left:0;right:0;bottom:58px;display:flex;justify-content:center;gap:8px;z-index:2}
+.hero .puntos button{width:9px;height:9px;padding:0;border-radius:50%;border:0;background:rgba(255,250,249,.55);transition:width .3s,background .3s}
+.hero .puntos button[aria-current="true"]{width:26px;border-radius:5px;background:#fffaf9}
+@media (prefers-reduced-motion:reduce){.hero .foto.on{animation:none}}
+@media (max-width:520px){.hero .wrap{padding-bottom:96px}.hero .puntos{bottom:52px}}
 .hero .foto::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(var(--hero-velo),.7) 0%,rgba(var(--hero-velo),.32) 55%,rgba(var(--hero-velo),0) 100%)}
 .hero .wrap{position:relative;padding-block:clamp(48px,9vw,110px) clamp(70px,10vw,120px);color:#fbf7ec}
 .hero .eyebrow{font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;opacity:.9}
@@ -324,7 +332,8 @@ footer.pie-pag span button{color:inherit;opacity:1}
 </header>
 
 <section class="hero" id="inicio">
-  <div class="foto" role="img" aria-label="Productos naturales Organa"></div>
+  <div class="slides" role="img" aria-label="Productos naturales Organa"><div class="foto on" style="background-image:url(img/hero.jpg)"></div><div class="foto" style="background-image:url(img/portada-2.jpg)"></div><div class="foto" style="background-image:url(img/portada-3.jpg)"></div><div class="foto" style="background-image:url(img/portada-4.jpg)"></div></div>
+  <div class="puntos" id="puntos" role="group" aria-label="Fotos de portada"><button type="button" aria-label="Foto 1: Productos naturales Organa" aria-current="true"></button><button type="button" aria-label="Foto 2: Lip gloss natural"></button><button type="button" aria-label="Foto 3: Jabones artesanales"></button><button type="button" aria-label="Foto 4: Lufas exfoliantes naturales"></button></div>
   <div class="wrap">
     <div class="eyebrow">Cosmética natural · <span id="heroCiudad">Iquique</span></div>
     <h1>Organa</h1>

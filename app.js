@@ -598,5 +598,20 @@ $("#admPublicar").onclick=async()=>{
 };
 function aDataURL(b){return new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b);});}
 
+/* --- portada con fotos que se turnan --- */
+(function(){
+  const fotos=[...document.querySelectorAll(".hero .foto")], puntos=[...document.querySelectorAll("#puntos button")];
+  if(fotos.length<2) return;
+  let i=0, t=null;
+  const quieto=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function ir(n){
+    fotos[i].classList.remove("on"); puntos[i].removeAttribute("aria-current");
+    i=(n+fotos.length)%fotos.length;
+    void fotos[i].offsetWidth; fotos[i].classList.add("on"); puntos[i].setAttribute("aria-current","true");
+  }
+  function auto(){ clearInterval(t); if(!quieto) t=setInterval(()=>{ if(!document.hidden) ir(i+1); },5000); }
+  puntos.forEach((b,n)=>b.onclick=()=>{ir(n);auto();});
+  auto();
+})();
 cargar();
 })();
