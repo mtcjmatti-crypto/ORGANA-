@@ -310,6 +310,7 @@ function abrirAdmin(){
 function marcar(v){
   sucio=v; const e=$("#admEstado");
   e.textContent=v?"Cambios sin publicar":(store("organa-borrador")?"Borrador guardado solo en este equipo":"Todo publicado");
+  if(!ghToken()&&!(window.claude)) e.textContent+=" · Falta conectar en Ajustes";
   e.classList.toggle("pend",v); $("#admPublicar").disabled=!v;
 }
 const cambio=()=>marcar(true);
@@ -543,9 +544,17 @@ function vistaCategorias(v){
   pintar();
 }
 
-/* --- clave --- */
+/* --- ajustes: conexión para publicar + clave --- */
+const GH={owner:"mtcjmatti-crypto",repo:"ORGANA-",rama:"main"};
+const ghToken=()=>store("organa-gh-token")||"";
 function vistaClave(v){
-  v.innerHTML=`<form class="form" id="kForm"><div class="tarjeta"><h3>Cambiar clave del panel</h3>
+  v.innerHTML=`<div class="form" style="margin-bottom:16px"><div class="tarjeta"><h3>Conexión para publicar</h3>
+    <p class="ayuda" style="margin:0">Pega aquí el código de acceso (token) de GitHub una sola vez en este equipo. Con eso, “Publicar cambios” deja los cambios visibles para todos.</p>
+    <div class="campo"><label class="lbl" for="ghTok">Token de GitHub</label><input class="inp" id="ghTok" type="password" autocomplete="off" placeholder="github_pat_…"></div>
+    <p class="ayuda" id="ghEstado" style="margin:0"></p>
+    <div class="fila"><button class="btn btn-oliva btn-chico" id="ghGuardar" type="button">Guardar y probar</button><button class="btn btn-suave btn-chico" id="ghQuitar" type="button">Quitar de este equipo</button></div>
+  </div></div>
+  <form class="form" id="kForm"><div class="tarjeta"><h3>Cambiar clave del panel</h3>
     <div class="campo"><label class="lbl" for="k1">Nueva clave</label><input class="inp" id="k1" type="password" minlength="6" required autocomplete="new-password"></div>
     <div class="campo"><label class="lbl" for="k2">Repite la nueva clave</label><input class="inp" id="k2" type="password" minlength="6" required autocomplete="new-password"></div>
     <p class="ayuda" style="margin:0">Mínimo 6 caracteres. La nueva clave rige después de publicar.</p>
@@ -556,6 +565,40 @@ function vistaClave(v){
     if($("#k1").value!==$("#k2").value){$("#kErr").hidden=false;$("#kErr").textContent="Las dos claves no coinciden.";return;}
     ED.claveHash=await sha($("#k1").value); cambio(); $("#kErr").hidden=true; $("#kForm").reset(); toast("Clave lista. Publica para que quede activa.");
   });
+  const est=$("#ghEstado");
+  est.textContent=ghToken()?"Este equipo ya está conectado.":"Este equipo aún no está conectado: los cambios quedarán solo aquí.";
+  $("#ghGuardar").onclick=async()=>{
+    const t=$("#ghTok").value.trim(); if(!t){est.textContent="Pega el token primero.";return;}
+    est.textContent="Probando conexión…";
+    const r=await ghProbar(t);
+    if(r===true){store("organa-gh-token",t);$("#ghTok").value="";est.textContent="Conectado. Ya puedes publicar para todos desde este equipo.";marcar(sucio);toast("Conexión lista");}
+    else est.textContent=r;
+  };
+  $("#ghQuitar").onclick=()=>{store("organa-gh-token",null);est.textContent="Token quitado de este equipo.";marcar(sucio);};
+}
+const ghHead=t=>({"Authorization":"Bearer "+t,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"});
+async function ghProbar(t){
+  try{
+    const r=await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}`,{headers:ghHead(t),cache:"no-store"});
+    if(r.status===401) return "El token no es válido o venció. Crea uno nuevo.";
+    if(!r.ok) return "El token no tiene acceso al repositorio ORGANA-.";
+    const j=await r.json();
+    if(j.permissions&&j.permissions.push===false) return "El token solo puede leer. Dale permiso de escritura en “Contents”.";
+    return true;
+  }catch(e){return "No hay conexión a internet. Intenta de nuevo.";}
+}
+function b64Texto(s){const b=new TextEncoder().encode(s);let x="";for(let i=0;i<b.length;i+=0x8000)x+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(x);}
+async function b64Blob(bl){return (await aDataURL(bl)).split(",")[1];}
+async function ghSubir(t,ruta,b64,msg){
+  const url=`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${ruta.split("/").map(encodeURIComponent).join("/")}`;
+  for(let intento=0;intento<2;intento++){
+    let sha;
+    const g=await fetch(url+"?ref="+GH.rama+"&t="+Date.now(),{headers:ghHead(t),cache:"no-store"});
+    if(g.ok) sha=(await g.json()).sha; else if(g.status!==404) throw {code:"gh",status:g.status};
+    const p=await fetch(url,{method:"PUT",headers:ghHead(t),body:JSON.stringify({message:msg,content:b64,sha,branch:GH.rama})});
+    if(p.ok) return;
+    if(p.status!==409||intento) throw {code:"gh",status:p.status};
+  }
 }
 
 /* --- publicar --- */
@@ -572,6 +615,21 @@ $("#admPublicar").onclick=async()=>{
   const err=validar(); if(err){toast(err);return;}
   const btn=$("#admPublicar"); btn.disabled=true; btn.textContent="Publicando…";
   const nuevo=clon(ED); nuevo.version=(PUB_VERSION||1)+1;
+  const tok=ghToken();
+  if(tok){
+    try{
+      const usadas=Object.keys(nuevasFotos).filter(r=>JSON.stringify(nuevo).includes(r));
+      for(const r of usadas) await ghSubir(tok,r,await b64Blob(nuevasFotos[r]),"Foto nueva desde el panel");
+      await ghSubir(tok,"datos.json",b64Texto(JSON.stringify(nuevo,null,1)),"Cambios desde el panel de administración");
+      for(const r in nuevasFotos) delete nuevasFotos[r];
+      PUB_VERSION=nuevo.version; DATA=nuevo; ED=clon(nuevo); store("organa-borrador",null);
+      marcar(false); toast("Publicado. Todos lo verán en unos minutos.");
+    }catch(e){
+      const s=e&&e.status;
+      toast(s===401?"El token venció o no es válido. Revísalo en Ajustes.":s===403||s===404?"El token no tiene permiso para publicar. Revísalo en Ajustes.":"No se pudo publicar. Revisa tu conexión e intenta de nuevo.");
+    }
+    btn.textContent="Publicar cambios"; btn.disabled=!sucio; return;
+  }
   let artifact=null; try{artifact=window.claude&&await window.claude.use("artifact");}catch(e){}
   try{
     if(!artifact) throw {code:"sin_capacidad"};
@@ -591,7 +649,7 @@ $("#admPublicar").onclick=async()=>{
       await Promise.all(Object.keys(nuevasFotos).map(async r=>{const d=await aDataURL(nuevasFotos[r]);nuevo.productos.forEach(p=>{if(p.img===previews[r])p.img=d;});}));
       store("organa-borrador",JSON.stringify({base:PUB_VERSION,datos:nuevo}));
       DATA=nuevo; ED=clon(nuevo); marcar(false);
-      $("#admEstado").textContent="Guardado solo en este equipo"; toast("Desde aquí no se puede publicar. Los cambios quedaron guardados en este equipo.");
+      $("#admEstado").textContent="Guardado solo en este equipo"; toast("Guardado solo en este equipo. Para publicar para todos, conecta GitHub en Ajustes.");
     }
   }
   btn.textContent="Publicar cambios"; btn.disabled=!sucio;
