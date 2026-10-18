@@ -1,5 +1,5 @@
 {
- "version": 2,
+ "version": 3,
  "tienda": {
   "nombre": "Organa",
   "whatsapp": "56975141739",
@@ -243,21 +243,21 @@
     {
      "nombre": "Antioxidante uva",
      "detalle": "Ideal pieles mixtas a grasas.",
-     "precio": 6800
+     "precio": 7800
     },
     {
      "nombre": "Niacinamida y Ácido Hialurónico",
      "detalle": "Ideal pieles maduras, atenúa manchas.",
-     "precio": 8900
+     "precio": 9900
     },
     {
      "nombre": "Caléndula",
      "detalle": "Pieles sensibles.",
-     "precio": 6800
+     "precio": 7800
     },
     {
      "nombre": "Niacinamida y Centella asiática",
-     "precio": 12500
+     "precio": 13500
     }
    ]
   },
@@ -500,20 +500,20 @@
    "variantes": [
     {
      "nombre": "Masajeador 120 grs.",
-     "precio": 4800
+     "precio": 5800
     },
     {
      "nombre": "Jabón circular 80 grs.",
-     "precio": 3500
+     "precio": 4500
     },
     {
      "nombre": "Jabón pequeño 60 grs.",
-     "precio": 2700
+     "precio": 3990
     },
     {
      "nombre": "A pedido",
      "detalle": "Aromas a pedido: Cúrcuma miel, Avena, Avena miel, Lavanda, Sandía.",
-     "precio": 3800,
+     "precio": 4990,
      "opcion": {
       "nombre": "Aroma",
       "valores": [
@@ -539,19 +539,19 @@
    "variantes": [
     {
      "nombre": "Polvos espumosos",
-     "precio": 4900
+     "precio": 5990
     },
     {
      "nombre": "Bombas efervescentes",
-     "precio": 4500
+     "precio": 5500
     },
     {
      "nombre": "Bombas espuma corazón",
-     "precio": 4500
+     "precio": 5500
     },
     {
      "nombre": "Bombas espuma mediana",
-     "precio": 3000
+     "precio": 4500
     }
    ]
   },
@@ -652,11 +652,11 @@
    "variantes": [
     {
      "nombre": "120 ml.",
-     "precio": 8900
+     "precio": 9990
     },
     {
      "nombre": "100 ml.",
-     "precio": 7900
+     "precio": 8990
     }
    ]
   },
@@ -690,11 +690,11 @@
    "variantes": [
     {
      "nombre": "Grande",
-     "precio": 5800
+     "precio": 6990
     },
     {
      "nombre": "Pequeña",
-     "precio": 3800
+     "precio": 4990
     }
    ]
   },
@@ -878,12 +878,12 @@
     {
      "nombre": "Kit completo",
      "detalle": "1 bruma, 1 sal, 1 jabón, 1 saquito.",
-     "precio": 14900
+     "precio": 15990
     },
     {
      "nombre": "Kit",
      "detalle": "1 bruma, 1 jabón, 1 saquito.",
-     "precio": 9900
+     "precio": 10990
     }
    ]
   },
@@ -916,23 +916,23 @@
    "variantes": [
     {
      "nombre": "En barra, piel sensible 15 grs.",
-     "precio": 4900
+     "precio": 5990
     },
     {
      "nombre": "En barra, piel sensible 35 grs.",
-     "precio": 8700
+     "precio": 9990
     },
     {
      "nombre": "En crema, alta sudoración · Vidrio 35 gr.",
-     "precio": 6700
+     "precio": 7700
     },
     {
      "nombre": "En crema, alta sudoración · Stick cartón 35 gr.",
-     "precio": 6700
+     "precio": 7700
     },
     {
      "nombre": "En crema, alta sudoración · Pote cartón 50 gr.",
-     "precio": 8700
+     "precio": 9700
     }
    ]
   },
@@ -949,19 +949,19 @@
    "variantes": [
     {
      "nombre": "Antifaz",
-     "precio": 4900
+     "precio": 5990
     },
     {
      "nombre": "Multiuso",
-     "precio": 7900
+     "precio": 8990
     },
     {
      "nombre": "Lumbar",
-     "precio": 12900
+     "precio": 13990
     },
     {
      "nombre": "Cuellos",
-     "precio": 14900
+     "precio": 15990
     }
    ]
   },
@@ -978,11 +978,11 @@
    "variantes": [
     {
      "nombre": "Circular",
-     "precio": 3500
+     "precio": 4500
     },
     {
      "nombre": "Grandes",
-     "precio": 6000
+     "precio": 7500
     }
    ]
   },
