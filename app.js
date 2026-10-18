@@ -263,9 +263,27 @@ $("#pedido").addEventListener("submit",e=>{
 
 /* --- paneles --- */
 let abierto=null;
-function abrir(sel){ if(abierto)cerrarSin(); const el=$(sel); el.hidden=false; requestAnimationFrame(()=>{el.classList.add("on");$("#velo").classList.add("on");}); abierto=el; document.body.style.overflow="hidden"; setTimeout(()=>{const f=el.querySelector("[data-cerrar],input");f&&f.focus({preventScroll:true});},60); }
+/* --- botón atrás del celular: cierra lo abierto antes de salir del sitio --- */
+const pushNav=st=>{try{history.pushState(st,"");}catch(e){}};
+const replaceNav=st=>{try{history.replaceState(st,"");}catch(e){}};
+const PANELES=["login","ficha","carro","compartir"];
+let permitirSalida=false;
+try{ if(history.state&&history.state.o) replaceNav(null); }catch(e){}
+function abrir(sel){ const st={o:sel.slice(1)}; if(history.state&&PANELES.includes(history.state.o)) replaceNav(st); else pushNav(st); if(abierto)cerrarSin(); const el=$(sel); el.hidden=false; requestAnimationFrame(()=>{el.classList.add("on");$("#velo").classList.add("on");}); abierto=el; document.body.style.overflow="hidden"; setTimeout(()=>{const f=el.querySelector("[data-cerrar],input");f&&f.focus({preventScroll:true});},60); }
 function cerrarSin(){ const el=abierto; if(!el)return; el.classList.remove("on"); if(el.id==="login"||el.id==="compartir")el.hidden=true; else setTimeout(()=>{if(!el.classList.contains("on"))el.hidden=true;},300); abierto=null; }
-function cerrar(){ cerrarSin(); $("#velo").classList.remove("on"); if($("#admin").hidden)document.body.style.overflow=""; }
+function cerrarReal(){ cerrarSin(); $("#velo").classList.remove("on"); if($("#admin").hidden)document.body.style.overflow=""; }
+function cerrar(){ if(abierto&&history.state&&history.state.o===abierto.id){ history.back(); return; } cerrarReal(); }
+window.addEventListener("popstate",e=>{
+  const st=e.state||{};
+  if(abierto&&st.o!==abierto.id) cerrarReal();
+  if($("#admin").hidden) return;
+  if(st.o==="admin"){ if((st.ed||null)!==editando){ editando=st.ed||null; renderAdmin(); } return; }
+  if(sucio&&!permitirSalida){
+    pushNav({o:"admin"}); permitirSalida=true; setTimeout(()=>permitirSalida=false,4000);
+    toast("Tienes cambios sin publicar. Presiona atrás otra vez para salir igual."); return;
+  }
+  permitirSalida=false; salirAdmin();
+});
 $("#velo").onclick=cerrar;
 document.querySelectorAll("[data-cerrar]").forEach(b=>b.onclick=cerrar);
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&abierto)cerrar();});
@@ -290,13 +308,13 @@ async function sha(s){
   const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("organa|"+s));
   return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");
 }
-$("#abrirLogin").onclick=()=>{ if(sessionStorage.getItem("organa-admin")==="1"){abrirAdmin();return;} $("#loginErr").hidden=true; $("#clave").value=""; abrir("#login"); };
+$("#abrirLogin").onclick=()=>{ if(sessionStorage.getItem("organa-admin")==="1"){pushNav({o:"admin"});abrirAdmin();return;} $("#loginErr").hidden=true; $("#clave").value=""; abrir("#login"); };
 $("#login").addEventListener("submit",async e=>{
   e.preventDefault();
   const ok=(await sha($("#clave").value))===DATA.claveHash;
   if(!ok){$("#loginErr").hidden=false;return;}
   try{sessionStorage.setItem("organa-admin","1");}catch(e){}
-  cerrar(); abrirAdmin();
+  replaceNav({o:"admin"}); cerrarReal(); abrirAdmin();
 });
 if(location.hash==="#admin") setTimeout(()=>$("#abrirLogin").click(),400);
 
@@ -317,9 +335,13 @@ const cambio=()=>marcar(true);
 $("#admSalir").onclick=()=>{
   if(sucio&&!$("#admSalir").dataset.ok){$("#admSalir").dataset.ok="1";$("#admSalir").textContent="Salir sin publicar";toast("Tienes cambios sin publicar. Toca de nuevo para salir igual.");setTimeout(()=>{delete $("#admSalir").dataset.ok;$("#admSalir").textContent="Salir";},4000);return;}
   delete $("#admSalir").dataset.ok; $("#admSalir").textContent="Salir";
-  $("#admin").hidden=true; document.body.style.overflow=""; renderTodo();
+  const st=history.state||{};
+  if(st.o==="admin"){ permitirSalida=true; history.go(st.ed?-2:-1); } else salirAdmin();
 };
-document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{tabAct=t.dataset.tab;editando=null;renderAdmin();});
+function salirAdmin(){ editando=null; $("#admin").hidden=true; document.body.style.overflow=""; renderTodo(); }
+function editar(id,reemplazar){ editando=id; (reemplazar?replaceNav:pushNav)({o:"admin",ed:id}); renderAdmin(); }
+function volverLista(){ if(history.state&&history.state.ed) history.back(); else { editando=null; renderAdmin(); } }
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{tabAct=t.dataset.tab; if(history.state&&history.state.ed) replaceNav({o:"admin"}); editando=null;renderAdmin();});
 function renderAdmin(){
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",String(t.dataset.tab===tabAct)));
   const v=$("#admVista"); v.innerHTML=""; $("#admCuerpo").scrollTop=0;
@@ -353,7 +375,7 @@ function vistaLista(v){
           <div class="acc"><button class="ico" type="button" title="Subir" aria-label="Subir ${esc(p.nombre)}">↑</button><button class="ico" type="button" title="Bajar" aria-label="Bajar ${esc(p.nombre)}">↓</button><button class="btn btn-suave btn-chico" type="button">Editar</button></div>`;
         const [sub,baj,ed]=f.querySelectorAll("button");
         sub.onclick=()=>mover(p,-1,ps,pintar); baj.onclick=()=>mover(p,1,ps,pintar);
-        ed.onclick=()=>{editando=p.id;renderAdmin();};
+        ed.onclick=()=>editar(p.id);
         f.querySelector(".t").onclick=ed.onclick; f.querySelector(".t").style.cursor="pointer";
         g.appendChild(f);
       });
@@ -366,7 +388,7 @@ function vistaLista(v){
   $("#admNuevo").onclick=()=>{
     const id="p-"+Date.now().toString(36);
     ED.productos.push({id,estado:"disponible",cat:[admCat||ED.categorias[0].id],nombre:"Nuevo producto",img:"img/logo.png",medida:"",nota:"",desc:"",variantes:[{nombre:"Única",precio:0}]});
-    cambio(); editando=id; renderAdmin();
+    cambio(); editar(id);
   };
   pintar();
 }
@@ -459,11 +481,11 @@ function vistaEditar(v){
       $("#eFoto").style.backgroundImage=`url('${previews[ruta]}')`; toast("Foto lista. Se sube al publicar.");
     }catch(err){toast("No se pudo leer esa imagen. Prueba con una foto JPG o PNG.");}
   };
-  $("#volver").onclick=$("#eListo").onclick=()=>{editando=null;renderAdmin();};
-  $("#eDup").onclick=()=>{const c=clon(p);c.id="p-"+Date.now().toString(36);c.nombre=p.nombre+" (copia)";ED.productos.splice(ED.productos.indexOf(p)+1,0,c);cambio();editando=c.id;renderAdmin();toast("Producto duplicado");};
+  $("#volver").onclick=$("#eListo").onclick=volverLista;
+  $("#eDup").onclick=()=>{const c=clon(p);c.id="p-"+Date.now().toString(36);c.nombre=p.nombre+" (copia)";ED.productos.splice(ED.productos.indexOf(p)+1,0,c);cambio();editar(c.id,true);toast("Producto duplicado");};
   $("#eDel").onclick=()=>{$("#eConf").hidden=false;$("#eConf").scrollIntoView({block:"nearest"});};
   $("#eDelNo").onclick=()=>{$("#eConf").hidden=true;};
-  $("#eDelSi").onclick=()=>{ED.productos.splice(ED.productos.indexOf(p),1);cambio();editando=null;renderAdmin();toast("Producto eliminado");};
+  $("#eDelSi").onclick=()=>{ED.productos.splice(ED.productos.indexOf(p),1);cambio();volverLista();toast("Producto eliminado");};
 }
 function achicar(file){
   return new Promise((res,rej)=>{
