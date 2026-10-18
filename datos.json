@@ -100,11 +100,11 @@
    "variantes": [
     {
      "nombre": "Piel grasa",
-     "precio": 7000
+     "precio": 8500
     },
     {
      "nombre": "Piel sensible, rosácea",
-     "precio": 7000
+     "precio": 8500
     }
    ]
   },
@@ -122,7 +122,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 9500
+     "precio": 10990
     }
    ]
   },
@@ -140,7 +140,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 5500
+     "precio": 9990
     }
    ]
   },
@@ -157,7 +157,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 5500
+     "precio": 6500
     }
    ]
   },
@@ -174,7 +174,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 5500
+     "precio": 6500
     }
    ]
   },
@@ -191,7 +191,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 5500
+     "precio": 6500
     }
    ]
   },
@@ -208,7 +208,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 5500
+     "precio": 6500
     }
    ]
   },
@@ -224,7 +224,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7500
+     "precio": 10990
     }
    ]
   },
@@ -275,7 +275,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6500
+     "precio": 7500
     }
    ]
   },
@@ -292,7 +292,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 5000
+     "precio": 7990
     }
    ]
   },
@@ -311,7 +311,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 8800
+     "precio": 9990
     }
    ]
   },
@@ -329,32 +329,32 @@
     {
      "nombre": "Ortiga, Romero y Menta",
      "detalle": "Estimula el crecimiento del cabello. Reduce la caída del cabello. Regula el sebo y controla la grasa.",
-     "precio": 7800
+     "precio": 8500
     },
     {
      "nombre": "Neem (Anticaspa)",
      "detalle": "Propiedades antifúngicas y antimicrobianas. Reduce la inflamación y la irritación. Favorece un cuero cabelludo más sano.",
-     "precio": 7800
+     "precio": 8500
     },
     {
      "nombre": "Lavanda (todo tipo de cabellos)",
      "detalle": "Propiedades calmantes y relajantes. Equilibra el cuero cabelludo. Estimula el crecimiento del cabello.",
-     "precio": 7800
+     "precio": 8500
     },
     {
      "nombre": "Rosa Mosqueta (tinturados)",
      "detalle": "Hidratación profunda. Suavidad, brillo y elasticidad. Propiedades antioxidantes.",
-     "precio": 7800
+     "precio": 8500
     },
     {
      "nombre": "Manzanilla y Aloe (niños / cuero cabelludo sensible)",
      "detalle": "Calma el cuero cabelludo. Protección frente a daños ambientales. Menor irritación.",
-     "precio": 7800
+     "precio": 8500
     },
     {
      "nombre": "Cacao (cabellos rizados)",
      "detalle": "Nutrición e hidratación. Reparación de la fibra. Propiedades antioxidantes.",
-     "precio": 7800
+     "precio": 8500
     }
    ]
   },
@@ -371,7 +371,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7800
+     "precio": 8990
     }
    ]
   },
@@ -389,7 +389,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6800
+     "precio": 7990
     }
    ]
   },
@@ -407,11 +407,11 @@
    "variantes": [
     {
      "nombre": "Shampoo Ortiga",
-     "precio": 9500
+     "precio": 10990
     },
     {
      "nombre": "Shampoo Romero",
-     "precio": 9500
+     "precio": 10990
     }
    ]
   },
@@ -429,11 +429,11 @@
    "variantes": [
     {
      "nombre": "Crema capilar de Ortiga",
-     "precio": 7800
+     "precio": 8990
     },
     {
      "nombre": "Crema capilar Cola de caballo",
-     "precio": 7800
+     "precio": 8990
     }
    ]
   },
@@ -451,7 +451,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 8900
+     "precio": 9990
     }
    ]
   },
@@ -469,7 +469,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6800
+     "precio": 7990
     }
    ]
   },
@@ -568,7 +568,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6800
+     "precio": 7800
     }
    ]
   },
@@ -585,7 +585,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6000
+     "precio": 7990
     }
    ]
   },
@@ -602,7 +602,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6800
+     "precio": 7800
     }
    ]
   },
@@ -619,7 +619,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 5000
+     "precio": 6500
     }
    ]
   },
@@ -635,7 +635,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 5900
+     "precio": 6990
     }
    ]
   },
@@ -673,7 +673,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6800
+     "precio": 7890
     }
    ]
   },
@@ -710,7 +710,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6900
+     "precio": 7990
     }
    ]
   },
@@ -726,7 +726,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 5900
+     "precio": 7500
     }
    ]
   },
@@ -743,7 +743,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 5490
+     "precio": 6500
     }
    ]
   },
@@ -759,7 +759,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 3500
+     "precio": 4500
     }
    ]
   },
@@ -775,27 +775,27 @@
    "variantes": [
     {
      "nombre": "Buen dormir",
-     "precio": 7500
+     "precio": 8500
     },
     {
      "nombre": "No más jaqueca",
-     "precio": 7500
+     "precio": 8500
     },
     {
      "nombre": "No más estrés",
-     "precio": 7500
+     "precio": 8500
     },
     {
      "nombre": "Concentración",
-     "precio": 7500
+     "precio": 8500
     },
     {
      "nombre": "Calma y bienestar",
-     "precio": 7500
+     "precio": 8500
     },
     {
      "nombre": "Tranquila-mente",
-     "precio": 7500
+     "precio": 8500
     }
    ]
   },
@@ -811,19 +811,19 @@
    "variantes": [
     {
      "nombre": "Relax",
-     "precio": 7000
+     "precio": 8500
     },
     {
      "nombre": "Limpieza y protección",
-     "precio": 7000
+     "precio": 8500
     },
     {
      "nombre": "Abundancia y prosperidad",
-     "precio": 7000
+     "precio": 8500
     },
     {
      "nombre": "Amor propio",
-     "precio": 7000
+     "precio": 8500
     }
    ]
   },
@@ -840,19 +840,19 @@
    "variantes": [
     {
      "nombre": "Relax",
-     "precio": 6000
+     "precio": 7990
     },
     {
      "nombre": "Limpieza y protección",
-     "precio": 6000
+     "precio": 7990
     },
     {
      "nombre": "Abundancia y prosperidad",
-     "precio": 6000
+     "precio": 7990
     },
     {
      "nombre": "Amor propio",
-     "precio": 6000
+     "precio": 7990
     }
    ]
   },
@@ -900,7 +900,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7500
+     "precio": 8990
     }
    ]
   },
@@ -999,7 +999,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7490
+     "precio": 8500
     }
    ]
   }
