@@ -23,13 +23,18 @@ function store(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===n
 async function cargar(){
   let pub=null;
   try{const r=await fetch("datos.json",{cache:"no-store"});if(r.ok)pub=await r.json();}catch(e){}
-  let borr=null; try{borr=JSON.parse(store("organa-borrador")||"null");}catch(e){}
-  if(borr&&pub&&borr.base!==pub.version){borr=null;store("organa-borrador",null);}
-  DATA=borr?borr.datos:pub;
-  if(!DATA){$("#productos").innerHTML='<p class="vacio">No se pudo cargar el catálogo. Recarga la página.</p>';return;}
-  DATA.version=DATA.version||1;
-  PUB_VERSION=pub?pub.version:DATA.version;
-  renderTodo();
+  let cache=null; try{cache=JSON.parse(store("organa-planilla")||"null");}catch(e){}
+  // 1) se muestra al tiro lo último conocido; 2) se actualiza con la planilla de Google
+  DATA=cache?Object.assign({},pub||{},cache):pub;
+  if(DATA){ DATA.version=DATA.version||1; PUB_VERSION=pub?pub.version:1; renderTodo(); }
+  try{
+    if(!window.cargarPlanilla) throw new Error("sin planilla.js");
+    const pl=await Promise.race([window.cargarPlanilla(),new Promise((_,no)=>setTimeout(()=>no(new Error("tiempo")),9000))]);
+    store("organa-planilla",JSON.stringify(pl));
+    DATA=Object.assign({},pub||{},pl); DATA.version=DATA.version||1;
+    renderTodo();
+  }catch(e){ console.warn("Planilla no disponible, se usa la copia guardada:",e.message); }
+  if(!DATA) $("#productos").innerHTML='<p class="vacio">No se pudo cargar el catálogo. Recarga la página.</p>';
 }
 let PUB_VERSION=1;
 
