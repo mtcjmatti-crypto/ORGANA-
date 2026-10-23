@@ -51,7 +51,9 @@ function render(alDia){
   const gs=grupos().map(g=>({c:g.c,ps:g.ps.filter(coincide)})).filter(g=>g.ps.length);
   $("#tabs").innerHTML=gs.map(g=>`<button class="tab" type="button" data-id="${esc(g.c.id)}">${esc(g.c.nombre)}</button>`).join("");
   document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{const s=document.getElementById("s-"+t.dataset.id);if(!s)return;
-    marcarTab(t.dataset.id); pausaTabs=Date.now(); s.scrollIntoView({behavior:"smooth"});});
+    marcarTab(t.dataset.id); pausaTabs=Date.now();
+    const h=document.querySelector(".cab").offsetHeight;
+    window.scrollTo({top:Math.max(0,s.getBoundingClientRect().top+window.scrollY-h-8),behavior:"auto"});});
   const L=$("#lista");
   if(!gs.length){L.innerHTML='<p class="vacio">No hay productos con esa búsqueda.</p>';pintarBarra();return;}
   L.innerHTML=gs.map(g=>`<section class="sec" id="s-${esc(g.c.id)}" data-id="${esc(g.c.id)}"><h2>${esc(g.c.nombre)}<small>${g.ps.length}</small></h2><div class="cards">${g.ps.map(filaProd).join("")}</div></section>`).join("");
@@ -93,7 +95,7 @@ function observarTabs(){
   window._tabsScroll=true;
   let tic=false;
   addEventListener("scroll",()=>{ if(tic) return; tic=true; requestAnimationFrame(()=>{ tic=false;
-    if(Date.now()-pausaTabs<1000) return;
+    if(Date.now()-pausaTabs<350) return;
     const tope=(document.querySelector(".cab").getBoundingClientRect().bottom||0)+20;
     let actual=null; document.querySelectorAll(".sec").forEach(s=>{ if(s.getBoundingClientRect().top<=tope) actual=s.dataset.id; });
     if(!actual){const s=document.querySelector(".sec"); actual=s&&s.dataset.id;}

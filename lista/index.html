@@ -25,8 +25,8 @@
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{scroll-padding-top:150px;background:var(--fondo)}
-body{margin:0;background:linear-gradient(180deg,#fde3ea 0,#fdf0f3 320px,#fff6f4 100%);background-attachment:fixed;color:var(--tinta);font-family:var(--f-texto);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:calc(92px + env(safe-area-inset-bottom,0px));min-height:100vh}
+html{background:var(--fondo)}
+body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--f-texto);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:calc(92px + env(safe-area-inset-bottom,0px));min-height:100vh}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:#fde3ea}
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -36,14 +36,14 @@ img{max-width:100%}
 .num{font-variant-numeric:tabular-nums}
 
 /* Ilustraciones flotantes */
-.deco{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.deco img{position:absolute;opacity:.55;animation:flotar var(--t,16s) ease-in-out infinite alternate;will-change:transform}
+.deco{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(180deg,#fde3ea 0,#fdf0f3 45%,#fff6f4 100%)}
+.deco img{position:absolute;opacity:.55;animation:flotar var(--t,16s) ease-in-out infinite alternate}
 @keyframes flotar{from{transform:translateY(0) rotate(var(--r,0deg))}to{transform:translateY(-26px) rotate(calc(var(--r,0deg) + 8deg))}}
 @media (prefers-reduced-motion:reduce){.deco img{animation:none}}
 main,header,.barra{position:relative;z-index:1}
 
 /* Cabecera */
-.cab{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(253,227,234,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rosa-medio)}
+.cab{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:#fde3ea;border-bottom:1px solid var(--rosa-medio)}
 .cab .fila1{display:flex;align-items:center;gap:12px;padding-block:10px 8px}
 .logo{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
 .logo img{width:38px;flex:none}
@@ -120,7 +120,7 @@ main,header,.barra{position:relative;z-index:1}
 .creditos{text-align:center;color:var(--suave);font-size:.78rem;padding:18px 0}
 
 /* Barra de pedido */
-.barra{position:fixed;left:0;right:0;bottom:0;z-index:35;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--linea);box-shadow:0 -6px 22px var(--sombra);padding-bottom:env(safe-area-inset-bottom,0px)}
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:35;background:#ffffff;border-top:1px solid var(--linea);box-shadow:0 -6px 22px var(--sombra);padding-bottom:env(safe-area-inset-bottom,0px)}
 .barra .wrap{display:flex;align-items:center;gap:12px;padding-block:10px}
 .barra .res{flex:1;min-width:0}
 .barra .res b{display:block;font-size:1.25rem;color:var(--rosa-osc)}
@@ -279,6 +279,6 @@ main,header,.barra{position:relative;z-index:1}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="planilla.js?v=2"></script>
-<script src="app.js?v=3"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>

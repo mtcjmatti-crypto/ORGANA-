@@ -92,10 +92,18 @@ function renderChips(){
     const b=document.createElement("button"); b.className="chip"; b.type="button";
     b.setAttribute("aria-pressed",String(abiertas.has(g.c.id)));
     b.innerHTML=`<span>${esc(g.c.nombre)}</span><span class="c">${g.ps.length}</span>`;
-    b.onclick=()=>{abiertas.add(g.c.id);guardarAbiertas();renderChips();renderCatalogo();
-      const el=document.getElementById("cat-"+g.c.id); if(el) el.scrollIntoView({behavior:"smooth",block:"start"});};
+    b.onclick=()=>{
+      if(!abiertas.has(g.c.id)){abiertas.add(g.c.id);guardarAbiertas();renderCatalogo();}
+      cont.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+      irA(document.getElementById("cat-"+g.c.id));
+    };
     cont.appendChild(b);
   });
+}
+function irA(el){
+  if(!el) return;
+  const h=(document.querySelector("header.top")||{offsetHeight:0}).offsetHeight;
+  window.scrollTo({top:Math.max(0,el.getBoundingClientRect().top+window.scrollY-h-10),behavior:"auto"});
 }
 $("#abrirTodas").onclick=()=>{const gs=grupos();const todas=gs.every(g=>abiertas.has(g.c.id));
   abiertas=todas?new Set():new Set(gs.map(g=>g.c.id));guardarAbiertas();renderChips();renderCatalogo();};
