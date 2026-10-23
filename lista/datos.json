@@ -2,7 +2,7 @@
  "version": 3,
  "tienda": {
   "nombre": "Organa",
-  "whatsapp": "",
+  "whatsapp": "56964951526",
   "instagram": "organaiquique",
   "puntoVenta": "",
   "ciudad": "Iquique",
@@ -99,11 +99,11 @@
    "variantes": [
     {
      "nombre": "Piel grasa",
-     "precio": 8500
+     "precio": 7000
     },
     {
      "nombre": "Piel sensible, rosácea",
-     "precio": 8500
+     "precio": 7000
     }
    ]
   },
@@ -121,7 +121,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 10990
+     "precio": 9500
     }
    ]
   },
@@ -139,7 +139,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 9990
+     "precio": 5500
     }
    ]
   },
@@ -156,7 +156,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6500
+     "precio": 5500
     }
    ]
   },
@@ -173,7 +173,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6500
+     "precio": 5500
     }
    ]
   },
@@ -190,7 +190,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6500
+     "precio": 5500
     }
    ]
   },
@@ -207,7 +207,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6500
+     "precio": 5500
     }
    ]
   },
@@ -223,7 +223,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 10990
+     "precio": 7500
     }
    ]
   },
@@ -242,21 +242,21 @@
     {
      "nombre": "Antioxidante uva",
      "detalle": "Ideal pieles mixtas a grasas.",
-     "precio": 7800
+     "precio": 6800
     },
     {
      "nombre": "Niacinamida y Ácido Hialurónico",
      "detalle": "Ideal pieles maduras, atenúa manchas.",
-     "precio": 9900
+     "precio": 8900
     },
     {
      "nombre": "Caléndula",
      "detalle": "Pieles sensibles.",
-     "precio": 7800
+     "precio": 6800
     },
     {
      "nombre": "Niacinamida y Centella asiática",
-     "precio": 13500
+     "precio": 12500
     }
    ]
   },
@@ -274,7 +274,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7500
+     "precio": 6500
     }
    ]
   },
@@ -291,7 +291,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7990
+     "precio": 5000
     }
    ]
   },
@@ -310,7 +310,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 9990
+     "precio": 8800
     }
    ]
   },
@@ -328,32 +328,32 @@
     {
      "nombre": "Ortiga, Romero y Menta",
      "detalle": "Estimula el crecimiento del cabello. Reduce la caída del cabello. Regula el sebo y controla la grasa.",
-     "precio": 8500
+     "precio": 7800
     },
     {
      "nombre": "Neem (Anticaspa)",
      "detalle": "Propiedades antifúngicas y antimicrobianas. Reduce la inflamación y la irritación. Favorece un cuero cabelludo más sano.",
-     "precio": 8500
+     "precio": 7800
     },
     {
      "nombre": "Lavanda (todo tipo de cabellos)",
      "detalle": "Propiedades calmantes y relajantes. Equilibra el cuero cabelludo. Estimula el crecimiento del cabello.",
-     "precio": 8500
+     "precio": 7800
     },
     {
      "nombre": "Rosa Mosqueta (tinturados)",
      "detalle": "Hidratación profunda. Suavidad, brillo y elasticidad. Propiedades antioxidantes.",
-     "precio": 8500
+     "precio": 7800
     },
     {
      "nombre": "Manzanilla y Aloe (niños / cuero cabelludo sensible)",
      "detalle": "Calma el cuero cabelludo. Protección frente a daños ambientales. Menor irritación.",
-     "precio": 8500
+     "precio": 7800
     },
     {
      "nombre": "Cacao (cabellos rizados)",
      "detalle": "Nutrición e hidratación. Reparación de la fibra. Propiedades antioxidantes.",
-     "precio": 8500
+     "precio": 7800
     }
    ]
   },
@@ -370,7 +370,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 8990
+     "precio": 7800
     }
    ]
   },
@@ -388,7 +388,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7990
+     "precio": 6800
     }
    ]
   },
@@ -406,11 +406,11 @@
    "variantes": [
     {
      "nombre": "Shampoo Ortiga",
-     "precio": 10990
+     "precio": 9500
     },
     {
      "nombre": "Shampoo Romero",
-     "precio": 10990
+     "precio": 9500
     }
    ]
   },
@@ -428,11 +428,11 @@
    "variantes": [
     {
      "nombre": "Crema capilar de Ortiga",
-     "precio": 8990
+     "precio": 7800
     },
     {
      "nombre": "Crema capilar Cola de caballo",
-     "precio": 8990
+     "precio": 7800
     }
    ]
   },
@@ -450,7 +450,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 9990
+     "precio": 8900
     }
    ]
   },
@@ -468,7 +468,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7990
+     "precio": 6800
     }
    ]
   },
@@ -499,20 +499,20 @@
    "variantes": [
     {
      "nombre": "Masajeador 120 grs.",
-     "precio": 5800
+     "precio": 4800
     },
     {
      "nombre": "Jabón circular 80 grs.",
-     "precio": 4500
+     "precio": 3500
     },
     {
      "nombre": "Jabón pequeño 60 grs.",
-     "precio": 3990
+     "precio": 2700
     },
     {
      "nombre": "A pedido",
      "detalle": "Aromas a pedido: Cúrcuma miel, Avena, Avena miel, Lavanda, Sandía.",
-     "precio": 4990,
+     "precio": 3800,
      "opcion": {
       "nombre": "Aroma",
       "valores": [
@@ -538,19 +538,19 @@
    "variantes": [
     {
      "nombre": "Polvos espumosos",
-     "precio": 5990
+     "precio": 4900
     },
     {
      "nombre": "Bombas efervescentes",
-     "precio": 5500
+     "precio": 4500
     },
     {
      "nombre": "Bombas espuma corazón",
-     "precio": 5500
+     "precio": 4500
     },
     {
      "nombre": "Bombas espuma mediana",
-     "precio": 4500
+     "precio": 3000
     }
    ]
   },
@@ -567,7 +567,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7800
+     "precio": 6800
     }
    ]
   },
@@ -584,7 +584,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7990
+     "precio": 6000
     }
    ]
   },
@@ -601,7 +601,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7800
+     "precio": 6800
     }
    ]
   },
@@ -618,7 +618,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6500
+     "precio": 5000
     }
    ]
   },
@@ -634,7 +634,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6990
+     "precio": 5900
     }
    ]
   },
@@ -651,11 +651,11 @@
    "variantes": [
     {
      "nombre": "120 ml.",
-     "precio": 9990
+     "precio": 8900
     },
     {
      "nombre": "100 ml.",
-     "precio": 8990
+     "precio": 7900
     }
    ]
   },
@@ -672,7 +672,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7890
+     "precio": 6800
     }
    ]
   },
@@ -689,11 +689,11 @@
    "variantes": [
     {
      "nombre": "Grande",
-     "precio": 6990
+     "precio": 5800
     },
     {
      "nombre": "Pequeña",
-     "precio": 4990
+     "precio": 3800
     }
    ]
   },
@@ -709,7 +709,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7990
+     "precio": 6900
     }
    ]
   },
@@ -725,7 +725,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 7500
+     "precio": 5900
     }
    ]
   },
@@ -742,7 +742,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 6500
+     "precio": 5490
     }
    ]
   },
@@ -758,7 +758,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 4500
+     "precio": 3500
     }
    ]
   },
@@ -774,27 +774,27 @@
    "variantes": [
     {
      "nombre": "Buen dormir",
-     "precio": 8500
+     "precio": 7500
     },
     {
      "nombre": "No más jaqueca",
-     "precio": 8500
+     "precio": 7500
     },
     {
      "nombre": "No más estrés",
-     "precio": 8500
+     "precio": 7500
     },
     {
      "nombre": "Concentración",
-     "precio": 8500
+     "precio": 7500
     },
     {
      "nombre": "Calma y bienestar",
-     "precio": 8500
+     "precio": 7500
     },
     {
      "nombre": "Tranquila-mente",
-     "precio": 8500
+     "precio": 7500
     }
    ]
   },
@@ -810,19 +810,19 @@
    "variantes": [
     {
      "nombre": "Relax",
-     "precio": 8500
+     "precio": 7000
     },
     {
      "nombre": "Limpieza y protección",
-     "precio": 8500
+     "precio": 7000
     },
     {
      "nombre": "Abundancia y prosperidad",
-     "precio": 8500
+     "precio": 7000
     },
     {
      "nombre": "Amor propio",
-     "precio": 8500
+     "precio": 7000
     }
    ]
   },
@@ -839,19 +839,19 @@
    "variantes": [
     {
      "nombre": "Relax",
-     "precio": 7990
+     "precio": 6000
     },
     {
      "nombre": "Limpieza y protección",
-     "precio": 7990
+     "precio": 6000
     },
     {
      "nombre": "Abundancia y prosperidad",
-     "precio": 7990
+     "precio": 6000
     },
     {
      "nombre": "Amor propio",
-     "precio": 7990
+     "precio": 6000
     }
    ]
   },
@@ -877,12 +877,12 @@
     {
      "nombre": "Kit completo",
      "detalle": "1 bruma, 1 sal, 1 jabón, 1 saquito.",
-     "precio": 15990
+     "precio": 14900
     },
     {
      "nombre": "Kit",
      "detalle": "1 bruma, 1 jabón, 1 saquito.",
-     "precio": 10990
+     "precio": 9900
     }
    ]
   },
@@ -899,7 +899,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 8990
+     "precio": 7500
     }
    ]
   },
@@ -915,23 +915,23 @@
    "variantes": [
     {
      "nombre": "En barra, piel sensible 15 grs.",
-     "precio": 5990
+     "precio": 4900
     },
     {
      "nombre": "En barra, piel sensible 35 grs.",
-     "precio": 9990
+     "precio": 8700
     },
     {
      "nombre": "En crema, alta sudoración · Vidrio 35 gr.",
-     "precio": 7700
+     "precio": 6700
     },
     {
      "nombre": "En crema, alta sudoración · Stick cartón 35 gr.",
-     "precio": 7700
+     "precio": 6700
     },
     {
      "nombre": "En crema, alta sudoración · Pote cartón 50 gr.",
-     "precio": 9700
+     "precio": 8700
     }
    ]
   },
@@ -948,19 +948,19 @@
    "variantes": [
     {
      "nombre": "Antifaz",
-     "precio": 5990
+     "precio": 4900
     },
     {
      "nombre": "Multiuso",
-     "precio": 8990
+     "precio": 7900
     },
     {
      "nombre": "Lumbar",
-     "precio": 13990
+     "precio": 12900
     },
     {
      "nombre": "Cuellos",
-     "precio": 15990
+     "precio": 14900
     }
    ]
   },
@@ -977,11 +977,11 @@
    "variantes": [
     {
      "nombre": "Circular",
-     "precio": 4500
+     "precio": 3500
     },
     {
      "nombre": "Grandes",
-     "precio": 7500
+     "precio": 6000
     }
    ]
   },
@@ -998,7 +998,7 @@
    "variantes": [
     {
      "nombre": "Única",
-     "precio": 8500
+     "precio": 7490
     }
    ]
   }
