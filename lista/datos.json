@@ -2,12 +2,12 @@
  "version": 3,
  "tienda": {
   "nombre": "Organa",
-  "whatsapp": "56975141739",
+  "whatsapp": "",
   "instagram": "organaiquique",
-  "puntoVenta": "Serrano 932",
+  "puntoVenta": "",
   "ciudad": "Iquique",
-  "mapa": "https://www.google.com/maps/search/?api=1&query=Serrano+932,+Iquique,+Chile",
-  "feria": "Expo Emprendedores Iquique",
+  "mapa": "",
+  "feria": "",
   "horarios": [
    {
     "dia": "Lunes",

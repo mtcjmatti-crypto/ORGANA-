@@ -3,172 +3,215 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#fde4ea">
 <title>Organa Lista de Precios</title>
-<meta name="description" content="Lista de precios Organa · cosmética natural. Pide por WhatsApp.">
+<meta name="description" content="Lista de precios Organa · cosmética natural.">
 <link rel="icon" href="../img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Federo&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Federo&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
 <style>
-/* Layout: lista de precios compacta tipo "hoja de precios"; barra superior fija con buscador y categorías, filas con líneas punteadas hasta el precio, contador en cada fila y barra de pedido fija abajo. */
+/* Layout: lista de precios rosada y didáctica; ilustraciones de acuarela flotando detrás, cabecera fija con buscador y categorías, guía de 3 pasos, tarjetas de producto con "para qué sirve" y opciones con precio y contador, barra de pedido abajo. Siempre en tema claro. */
 :root{
-  --fondo:#fbf7f8; --hoja:#ffffff; --tinta:#3f2a35; --suave:#7c6872; --linea:#eadde2;
-  --ciruela:#6e3b55; --rosa:#c26f88; --rosa-claro:#f6e3e8; --salvia:#6f8a6a; --salvia-claro:#e7efe4;
-  --wsp:#2f8f55; --wsp-txt:#ffffff; --sombra:rgba(80,40,60,.12); --alerta:#b8452f;
+  color-scheme:light only;
+  --fondo:#fdf0f3; --hoja:#ffffff; --tinta:#4a2b3a; --suave:#8a6b79; --linea:#f3d6df;
+  --rosa:#e47f9c; --rosa-osc:#b44f74; --rosa-claro:#fde3ea; --rosa-medio:#f8c7d4;
+  --durazno:#fde0d3; --lila:#e9defa; --salvia:#7f9e7b; --salvia-claro:#e6f0e3;
+  --wsp:#2f8f55; --alerta:#c0453a; --sombra:rgba(180,79,116,.14);
+  --f-titulo:"Cormorant Garamond","Georgia",serif;
   --f-marca:"Federo","Trebuchet MS",serif;
   --f-texto:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --fondo:#1f171b; --hoja:#2a2025; --tinta:#f3e6ec; --suave:#bea9b3; --linea:#43343b;
-  --ciruela:#e7b2c6; --rosa:#e293ab; --rosa-claro:#4a3039; --salvia:#9cbb95; --salvia-claro:#2f3a2d;
-  --wsp:#3aa968; --wsp-txt:#0f1f14; --sombra:rgba(0,0,0,.45); --alerta:#f0956c; color-scheme:dark }}
-:root[data-theme="dark"]{
-  --fondo:#1f171b; --hoja:#2a2025; --tinta:#f3e6ec; --suave:#bea9b3; --linea:#43343b;
-  --ciruela:#e7b2c6; --rosa:#e293ab; --rosa-claro:#4a3039; --salvia:#9cbb95; --salvia-claro:#2f3a2d;
-  --wsp:#3aa968; --wsp-txt:#0f1f14; --sombra:rgba(0,0,0,.45); --alerta:#f0956c; color-scheme:dark }
-
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{scroll-padding-top:150px}
-body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--f-texto);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--hoja)}
+html{scroll-padding-top:150px;background:var(--fondo)}
+body{margin:0;background:linear-gradient(180deg,#fde3ea 0,#fdf0f3 320px,#fff6f4 100%);background-attachment:fixed;color:var(--tinta);font-family:var(--f-texto);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:calc(92px + env(safe-area-inset-bottom,0px));min-height:100vh}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:#fde3ea}
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 img{max-width:100%}
-:focus-visible{outline:3px solid var(--rosa);outline-offset:2px;border-radius:6px}
-.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:2px;border-radius:8px}
+.wrap{position:relative;max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .num{font-variant-numeric:tabular-nums}
 
-/* Cabecera fija */
-.cab{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--hoja);border-bottom:1px solid var(--linea);box-shadow:0 4px 18px var(--sombra)}
+/* Ilustraciones flotantes */
+.deco{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.deco img{position:absolute;opacity:.55;animation:flotar var(--t,16s) ease-in-out infinite alternate;will-change:transform}
+@keyframes flotar{from{transform:translateY(0) rotate(var(--r,0deg))}to{transform:translateY(-26px) rotate(calc(var(--r,0deg) + 8deg))}}
+@media (prefers-reduced-motion:reduce){.deco img{animation:none}}
+main,header,.barra{position:relative;z-index:1}
+
+/* Cabecera */
+.cab{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(253,227,234,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rosa-medio)}
 .cab .fila1{display:flex;align-items:center;gap:12px;padding-block:10px 8px}
 .logo{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
-.logo img{width:36px;flex:none}
-.logo b{font-family:var(--f-marca);font-weight:400;font-size:1.35rem;letter-spacing:.06em;color:var(--ciruela);line-height:1}
-.logo small{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--suave);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .logo img{filter:invert(.9)}}
-:root[data-theme="dark"] .logo img{filter:invert(.9)}
-.ico{flex:none;width:40px;height:40px;border-radius:12px;border:1.5px solid var(--linea);background:var(--hoja);display:grid;place-items:center;color:var(--ciruela)}
-.buscar{display:flex;align-items:center;gap:8px;background:var(--fondo);border:1.5px solid var(--linea);border-radius:12px;padding:0 12px;margin-bottom:8px}
-.buscar input{border:0;background:transparent;padding:9px 0;flex:1;min-width:0;outline:none}
-.buscar svg{flex:none;color:var(--suave)}
+.logo img{width:38px;flex:none}
+.logo b{font-family:var(--f-marca);font-weight:400;font-size:1.4rem;letter-spacing:.08em;color:var(--rosa-osc);line-height:1}
+.logo small{display:block;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--suave);margin-top:3px}
+.ico{flex:none;width:42px;height:42px;border-radius:50%;border:0;background:var(--hoja);display:grid;place-items:center;color:var(--rosa-osc);box-shadow:0 2px 10px var(--sombra)}
+.buscar{display:flex;align-items:center;gap:8px;background:var(--hoja);border-radius:999px;padding:0 16px;margin-bottom:8px;box-shadow:0 2px 10px var(--sombra)}
+.buscar input{border:0;background:transparent;padding:10px 0;flex:1;min-width:0;outline:none}
+.buscar input::placeholder{color:#b496a3}
+.buscar svg{flex:none;color:var(--rosa)}
 .tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex:none;border:0;background:var(--fondo);border-radius:8px;padding:6px 12px;font-weight:700;font-size:.85rem;color:var(--suave);box-shadow:inset 0 0 0 1.5px var(--linea)}
-.tab[aria-current="true"]{background:var(--ciruela);color:var(--hoja);box-shadow:none}
+.tab{flex:none;border:0;background:rgba(255,255,255,.7);border-radius:999px;padding:7px 14px;font-weight:700;font-size:.85rem;color:var(--rosa-osc)}
+.tab[aria-current="true"]{background:var(--rosa-osc);color:#fff}
 
-/* Encabezado de la lista */
-.intro{padding-block:18px 6px;display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap}
-.intro h1{font-family:var(--f-marca);font-weight:400;font-size:1.7rem;margin:0;color:var(--ciruela);letter-spacing:.02em}
-.intro p{margin:2px 0 0;color:var(--suave);font-size:.88rem}
-.intro .act{font-size:.78rem;color:var(--suave);text-align:right}
+/* Bienvenida + pasos */
+.hola{padding-block:22px 4px;text-align:center}
+.hola h1{font-family:var(--f-titulo);font-style:italic;font-weight:600;font-size:clamp(2.2rem,7vw,3rem);line-height:1;margin:0;color:var(--rosa-osc)}
+.hola p{margin:6px auto 0;color:var(--suave);max-width:38ch}
+.pasos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0 4px;padding:0;list-style:none}
+.pasos li{background:rgba(255,255,255,.85);border-radius:18px;padding:12px 10px;text-align:center;font-size:.82rem;line-height:1.3;box-shadow:0 2px 12px var(--sombra)}
+.pasos b{display:grid;place-items:center;width:28px;height:28px;margin:0 auto 6px;border-radius:50%;background:var(--rosa);color:#fff;font-size:.9rem}
+.pasos span{display:block;font-weight:700;color:var(--tinta)}
+.estado-datos{text-align:center;font-size:.75rem;color:var(--suave);margin:8px 0 0}
 
-/* Secciones y filas */
-.sec{background:var(--hoja);border-radius:14px;margin-top:14px;overflow:hidden;box-shadow:0 1px 0 var(--linea)}
-.sec>h2{margin:0;padding:12px 16px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ciruela);background:var(--rosa-claro);display:flex;justify-content:space-between}
-.sec>h2 span{letter-spacing:0;text-transform:none;font-weight:600;color:var(--suave)}
-.prod{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;padding:12px 16px;border-top:1px solid var(--linea)}
-.sec>h2+.prod{border-top:0}
-.prod .foto{width:52px;height:52px;border-radius:10px;background:var(--linea) center/cover;border:0;padding:0}
-.prod .cuerpo{min-width:0}
-.prod .tit{display:flex;align-items:baseline;gap:8px}
-.prod .nom{font-weight:800;font-size:.98rem;line-height:1.25;border:0;background:none;padding:0;text-align:left;color:var(--tinta)}
-.prod .meta{font-size:.78rem;color:var(--suave);margin-top:1px}
-.prod .meta .ag{color:var(--alerta);font-weight:800}
-.op{display:flex;align-items:center;gap:8px;margin-top:6px;min-height:34px}
-.op .on{font-size:.9rem;min-width:0;flex:0 1 auto}
-.op .on small{display:block;font-size:.74rem;color:var(--suave);line-height:1.3}
-.op .pts{flex:1 1 20px;border-bottom:2px dotted var(--linea);transform:translateY(-4px);min-width:14px}
-.op .pr{font-weight:800;white-space:nowrap}
-.cnt{flex:none;display:flex;align-items:center;border-radius:999px;background:var(--fondo);box-shadow:inset 0 0 0 1.5px var(--linea)}
-.cnt button{width:32px;height:32px;border:0;background:transparent;font-size:1.1rem;line-height:1;color:var(--ciruela);font-weight:700}
-.cnt span{min-width:20px;text-align:center;font-weight:800;font-size:.9rem}
-.cnt.activo{background:var(--salvia-claro);box-shadow:inset 0 0 0 1.5px var(--salvia)}
-.cnt[aria-disabled="true"]{opacity:.4;pointer-events:none}
+/* Secciones */
+.sec{margin-top:24px}
+.sec>h2{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-family:var(--f-titulo);font-style:italic;font-weight:600;font-size:1.75rem;color:var(--rosa-osc)}
+.sec>h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--rosa-medio),transparent)}
+.sec>h2 small{font-family:var(--f-texto);font-style:normal;font-size:.78rem;font-weight:700;color:var(--suave);background:rgba(255,255,255,.8);border-radius:999px;padding:2px 9px}
+.cards{display:flex;flex-direction:column;gap:12px}
+
+/* Tarjeta de producto */
+.prod{position:relative;background:var(--hoja);border-radius:22px;padding:14px;box-shadow:0 4px 18px var(--sombra)}
+.prod.ag{opacity:.75}
+.p-top{display:grid;grid-template-columns:78px minmax(0,1fr);gap:12px;align-items:start}
+.p-foto{width:78px;height:78px;border-radius:18px;border:0;padding:0;background:var(--rosa-claro) center/cover}
+.p-nom{display:block;border:0;background:none;padding:0;text-align:left;font-family:var(--f-titulo);font-weight:600;font-size:1.32rem;line-height:1.1;color:var(--tinta)}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.chip{font-size:.72rem;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--lila);color:#6a4f8a}
+.chip.para{background:var(--salvia-claro);color:#4d6b4a}
+.chip.ag{background:#fbe0dc;color:var(--alerta)}
+.p-sirve{margin:10px 0 0;font-size:.86rem;color:var(--suave);background:var(--fondo);border-radius:14px;padding:9px 12px}
+.p-sirve b{color:var(--rosa-osc)}
+.p-sirve button{border:0;background:none;padding:0;color:var(--rosa-osc);font-weight:800;text-decoration:underline;font-size:.84rem}
+.ops{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.ops-tit{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--suave);margin:2px 2px 0}
+.op{display:flex;align-items:center;gap:10px;border:1.5px solid var(--linea);border-radius:16px;padding:8px 8px 8px 12px}
+.op.activo{border-color:var(--rosa);background:#fff7f9}
+.op .on{flex:1;min-width:0;font-weight:700;font-size:.9rem;line-height:1.25}
+.op .on small{display:block;font-weight:500;font-size:.76rem;color:var(--suave);margin-top:1px}
+.op .pr{flex:none;font-weight:800;color:var(--rosa-osc);background:var(--rosa-claro);border-radius:999px;padding:4px 10px;font-size:.92rem}
+.cnt{flex:none;display:flex;align-items:center;gap:2px}
+.cnt button{width:34px;height:34px;border-radius:50%;border:0;font-size:1.15rem;line-height:1;font-weight:800}
+.cnt .menos{background:var(--fondo);color:var(--rosa-osc)}
+.cnt .mas{background:var(--rosa);color:#fff;box-shadow:0 3px 10px var(--sombra)}
+.cnt span{min-width:22px;text-align:center;font-weight:800}
+.cnt.cero .menos,.cnt.cero span{visibility:hidden}
+.cnt[aria-disabled="true"]{opacity:.35;pointer-events:none}
+.pista{font-size:.74rem;color:var(--suave);margin:2px 4px 0}
+@media (max-width:380px){.op{flex-wrap:wrap}.op .on{flex-basis:100%}.op .pr{margin-right:auto}}
 .vacio{text-align:center;color:var(--suave);padding:40px 0}
 
 /* Contacto */
-.pie{margin-top:22px;background:var(--hoja);border-radius:14px;padding:18px 16px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.pie h3{margin:0 0 6px;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ciruela)}
+.pie{margin-top:28px;background:rgba(255,255,255,.9);border-radius:22px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:18px;box-shadow:0 4px 18px var(--sombra)}
+.pie h3{margin:0 0 6px;font-family:var(--f-titulo);font-style:italic;font-weight:600;font-size:1.35rem;color:var(--rosa-osc)}
 .pie p{margin:3px 0;font-size:.9rem}
-.pie a{color:var(--ciruela);font-weight:700}
+.pie a{color:var(--rosa-osc);font-weight:700}
 .horas{width:100%;border-collapse:collapse;font-size:.88rem}
 .horas td{padding:3px 0;border-bottom:1px dotted var(--linea)}
 .horas td:last-child{text-align:right}
-.horas tr.hoy td{font-weight:800;color:var(--ciruela)}
+.horas tr.hoy td{font-weight:800;color:var(--rosa-osc)}
 @media (max-width:600px){.pie{grid-template-columns:1fr}}
 .creditos{text-align:center;color:var(--suave);font-size:.78rem;padding:18px 0}
 
 /* Barra de pedido */
-.barra{position:fixed;left:0;right:0;bottom:0;z-index:35;background:var(--hoja);border-top:1px solid var(--linea);box-shadow:0 -6px 20px var(--sombra);padding-bottom:env(safe-area-inset-bottom,0px)}
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:35;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--linea);box-shadow:0 -6px 22px var(--sombra);padding-bottom:env(safe-area-inset-bottom,0px)}
 .barra .wrap{display:flex;align-items:center;gap:12px;padding-block:10px}
 .barra .res{flex:1;min-width:0}
-.barra .res b{display:block;font-size:1.2rem}
+.barra .res b{display:block;font-size:1.25rem;color:var(--rosa-osc)}
 .barra .res span{font-size:.8rem;color:var(--suave)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:12px 18px;font-weight:800;border:0;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 20px;font-weight:800;border:0;text-decoration:none}
 .btn[disabled]{opacity:.45;cursor:not-allowed}
-.btn-wsp{background:var(--wsp);color:var(--wsp-txt)}
+.btn-rosa{background:var(--rosa-osc);color:#fff;box-shadow:0 4px 14px var(--sombra)}
+.btn-wsp{background:var(--wsp);color:#fff}
 .btn-suave{background:var(--fondo);color:var(--tinta);box-shadow:inset 0 0 0 1.5px var(--linea)}
 
-/* Hojas (detalle, pedido, QR, elegir aroma) */
-.velo{position:fixed;inset:0;background:rgba(30,15,22,.5);z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
+/* Hojas */
+.velo{position:fixed;inset:0;background:rgba(74,43,58,.45);z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
 .velo.on{opacity:1;pointer-events:auto}
-.hoja{position:fixed;z-index:60;left:50%;bottom:0;width:min(560px,100%);max-height:90vh;overflow:auto;background:var(--hoja);border-radius:20px 20px 0 0;transform:translate(-50%,100%);transition:transform .25s;padding:18px max(18px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
+.hoja{position:fixed;z-index:60;left:50%;bottom:0;width:min(560px,100%);max-height:90vh;overflow:auto;background:var(--hoja);border-radius:26px 26px 0 0;transform:translate(-50%,100%);transition:transform .25s;padding:18px max(18px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
 .hoja.on{transform:translate(-50%,0)}
-.hoja .x{position:sticky;top:0;float:right;width:36px;height:36px;border-radius:50%;border:0;background:var(--fondo);font-size:1.2rem;z-index:2}
-.hoja h2{font-family:var(--f-marca);font-weight:400;color:var(--ciruela);margin:0 0 6px;font-size:1.5rem;padding-right:44px}
-.hoja .img{width:100%;aspect-ratio:4/3;border-radius:14px;background:var(--linea) center/cover;margin:6px 0 12px}
-.desc{display:flex;flex-direction:column;gap:8px;font-size:.95rem;line-height:1.6}
+.hoja .x{position:sticky;top:0;float:right;width:38px;height:38px;border-radius:50%;border:0;background:var(--rosa-claro);color:var(--rosa-osc);font-size:1.2rem;z-index:2}
+.hoja h2{font-family:var(--f-titulo);font-style:italic;font-weight:600;color:var(--rosa-osc);margin:0 0 6px;font-size:1.8rem;line-height:1.1;padding-right:46px}
+.hoja .img{width:100%;aspect-ratio:4/3;border-radius:20px;background:var(--rosa-claro) center/cover;margin:6px 0 12px}
+.desc{display:flex;flex-direction:column;gap:8px;font-size:.95rem;line-height:1.65}
 .desc p{margin:0}.desc ul,.desc ol{margin:0;padding-left:1.2em}
+.desc li::marker{color:var(--rosa)}
 .lbl{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--suave);margin:12px 0 6px}
-.inp{width:100%;border:1.5px solid var(--linea);background:var(--fondo);border-radius:10px;padding:10px 12px}
+.inp{width:100%;border:1.5px solid var(--linea);background:var(--fondo);border-radius:14px;padding:10px 12px}
 .item{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dotted var(--linea);font-size:.92rem}
 .item .t{flex:1;min-width:0}.item .t small{display:block;color:var(--suave)}
 .dos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.dos label{border:1.5px solid var(--linea);border-radius:10px;padding:9px 10px;display:flex;gap:8px;align-items:center;cursor:pointer}
-.dos label:has(input:checked){border-color:var(--salvia);background:var(--salvia-claro)}
+.dos label{border:1.5px solid var(--linea);border-radius:14px;padding:9px 10px;display:flex;gap:8px;align-items:center;cursor:pointer}
+.dos label:has(input:checked){border-color:var(--rosa);background:#fff7f9}
+.dos input{accent-color:var(--rosa-osc)}
 .aviso{font-size:.8rem;color:var(--suave);margin:8px 0 0}
-.elegir{display:flex;flex-direction:column;gap:8px;margin-top:8px}
-.elegir button{border:1.5px solid var(--linea);background:var(--fondo);border-radius:10px;padding:12px;text-align:left;font-weight:700}
-.qr{display:block;width:min(240px,70vw);margin:8px auto;border-radius:14px;background:#fff;padding:10px}
-.toast{position:fixed;z-index:90;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);background:var(--tinta);color:var(--hoja);padding:9px 16px;border-radius:999px;font-weight:700;font-size:.9rem;opacity:0;transition:.2s;pointer-events:none;max-width:calc(100vw - 32px);text-align:center}
+.aviso.pronto{background:var(--rosa-claro);color:var(--rosa-osc);border-radius:14px;padding:10px 12px;font-weight:700;text-align:center}
+.elegir{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.elegir button{border:1.5px solid var(--linea);background:var(--fondo);border-radius:16px;padding:14px 10px;font-weight:700;color:var(--tinta)}
+.qr{display:block;width:min(240px,70vw);margin:8px auto;border-radius:18px;background:#fff;padding:10px;box-shadow:0 4px 18px var(--sombra)}
+.toast{position:fixed;z-index:90;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);background:var(--rosa-osc);color:#fff;padding:9px 16px;border-radius:999px;font-weight:700;font-size:.9rem;opacity:0;transition:.2s;pointer-events:none;max-width:calc(100vw - 32px);text-align:center}
 .toast.on{opacity:1;transform:translate(-50%,0)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){.hoja,.velo,.toast{transition:none}}
 </style>
 </head>
 <body>
 
+<div class="deco" aria-hidden="true">
+  <img src="deco/peonia.png" alt="" style="top:9%;left:-48px;width:150px;--r:-12deg;--t:17s">
+  <img src="deco/eucalipto.png" alt="" style="top:30%;right:-30px;width:96px;--r:18deg;--t:14s">
+  <img src="deco/petalos.png" alt="" style="top:56%;left:-26px;width:110px;--r:8deg;--t:19s">
+  <img src="deco/lavanda.png" alt="" style="top:74%;right:2%;width:52px;--r:-10deg;--t:15s">
+  <img src="deco/petalos.png" alt="" style="top:4%;right:12%;width:70px;--r:40deg;--t:21s">
+  <img src="deco/peonia.png" alt="" style="bottom:-40px;left:30%;width:120px;--r:14deg;--t:18s">
+  <img src="deco/lavanda.png" alt="" style="top:42%;left:3%;width:40px;--r:20deg;--t:16s">
+  <img src="deco/eucalipto.png" alt="" style="bottom:12%;left:-20px;width:80px;--r:-30deg;--t:20s">
+</div>
+
 <header class="cab">
   <div class="wrap">
     <div class="fila1">
-      <div class="logo"><img src="../img/logo.png" alt=""><div><b>Organa</b><small id="subtitulo">Lista de precios</small></div></div>
+      <div class="logo"><img src="../img/logo.png" alt=""><div><b>Organa</b><small>Bienestar natural</small></div></div>
       <button class="ico" id="abrirQR" type="button" aria-label="Compartir lista">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>
       </button>
     </div>
     <label class="buscar" for="q">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-      <input id="q" type="search" placeholder="Buscar producto…" autocomplete="off">
+      <input id="q" type="search" placeholder="¿Qué buscas? Ej: caléndula, cabello…" autocomplete="off">
     </label>
     <nav class="tabs" id="tabs" aria-label="Categorías"></nav>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="intro">
-    <div><h1>Lista de precios</h1><p>Toca <b>+</b> para sumar al pedido. Toca un nombre o foto para ver el detalle.</p></div>
-    <div class="act" id="actualizado"></div>
-  </div>
+  <section class="hola">
+    <h1>Lista de precios</h1>
+    <p>Cosmética natural hecha a mano para cuidarte de pies a cabeza.</p>
+    <ol class="pasos" aria-label="Cómo pedir">
+      <li><b>1</b><span>Elige</span>Toca el <strong>+</strong> en lo que te guste</li>
+      <li><b>2</b><span>Revisa</span>Mira tu pedido abajo</li>
+      <li><b>3</b><span>Envía</span>Mándalo por WhatsApp</li>
+    </ol>
+    <p class="estado-datos" id="actualizado"></p>
+  </section>
+
   <div id="lista"><p class="vacio">Cargando precios…</p></div>
 
   <section class="pie" id="contacto">
     <div>
       <h3>Contacto</h3>
-      <p>WhatsApp: <a id="wsp" target="_blank" rel="noopener"></a></p>
-      <p>Punto de venta: <span id="pv"></span> <a id="mapa" target="_blank" rel="noopener" hidden>· Ver mapa</a></p>
-      <p>Instagram: <a id="ig" target="_blank" rel="noopener"></a></p>
+      <p id="filaWsp">WhatsApp: <a id="wsp" target="_blank" rel="noopener"></a></p>
+      <p id="filaPv">Punto de venta: <span id="pv"></span> <a id="mapa" target="_blank" rel="noopener" hidden>· Ver mapa</a></p>
+      <p id="filaIg">Instagram: <a id="ig" target="_blank" rel="noopener"></a></p>
+      <p id="filaPronto" class="aviso" hidden>Muy pronto publicaremos los datos de este punto de venta.</p>
     </div>
-    <div>
+    <div id="bloqueHorario">
       <h3>Horario</h3>
       <table class="horas" id="horas"></table>
       <p class="aviso" id="notaH"></p>
@@ -180,7 +223,7 @@ img{max-width:100%}
 <div class="barra">
   <div class="wrap">
     <div class="res"><b class="num" id="total">$0</b><span id="cuenta">Tu pedido está vacío</span></div>
-    <button class="btn btn-wsp" id="verPedido" type="button" disabled>Ver pedido</button>
+    <button class="btn btn-rosa" id="verPedido" type="button" disabled>Ver mi pedido</button>
   </div>
 </div>
 
@@ -190,7 +233,7 @@ img{max-width:100%}
   <button class="x" data-cerrar aria-label="Cerrar">×</button>
   <h2 id="dNom"></h2>
   <div class="img" id="dImg" role="img"></div>
-  <p class="aviso" id="dMeta" style="margin:0 0 10px"></p>
+  <div class="chips" id="dChips" style="margin:0 0 12px"></div>
   <div class="desc" id="dDesc"></div>
 </div>
 
@@ -218,7 +261,8 @@ img{max-width:100%}
     <div id="pDirW" hidden><label class="lbl" for="pDir">Dirección</label><input class="inp" id="pDir" autocomplete="street-address"></div>
     <label class="lbl" for="pNota">Comentario (opcional)</label>
     <textarea class="inp" id="pNota" rows="2"></textarea>
-    <button class="btn btn-wsp" type="submit" style="width:100%;margin-top:14px">Enviar pedido por WhatsApp</button>
+    <p class="aviso pronto" id="pSinWsp" hidden>Muy pronto podrás enviar tu pedido por WhatsApp desde aquí.</p>
+    <button class="btn btn-wsp" type="submit" id="pEnviar" style="width:100%;margin-top:14px">Enviar pedido por WhatsApp</button>
     <button class="btn btn-suave" type="button" id="pVaciar" style="width:100%;margin-top:8px">Vaciar pedido</button>
   </form>
 </div>
@@ -235,6 +279,6 @@ img{max-width:100%}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="planilla.js?v=1"></script>
-<script src="app.js?v=1"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>

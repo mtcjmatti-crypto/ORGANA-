@@ -46,32 +46,43 @@ function coincide(p){
   return busq.split(/\s+/).every(w=>t.includes(w));
 }
 function render(alDia){
-  if(alDia!==undefined) $("#actualizado").textContent=alDia?"Precios al día":"";
+  if(alDia!==undefined) $("#actualizado").textContent=alDia?"✓ Precios actualizados":"";
   renderTienda();
   const gs=grupos().map(g=>({c:g.c,ps:g.ps.filter(coincide)})).filter(g=>g.ps.length);
   $("#tabs").innerHTML=gs.map(g=>`<button class="tab" type="button" data-id="${esc(g.c.id)}">${esc(g.c.nombre)}</button>`).join("");
   document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{const s=document.getElementById("s-"+t.dataset.id);if(s)s.scrollIntoView({behavior:"smooth"});});
   const L=$("#lista");
   if(!gs.length){L.innerHTML='<p class="vacio">No hay productos con esa búsqueda.</p>';pintarBarra();return;}
-  L.innerHTML=gs.map(g=>`<section class="sec" id="s-${esc(g.c.id)}" data-id="${esc(g.c.id)}"><h2>${esc(g.c.nombre)}<span>${g.ps.length}</span></h2>${g.ps.map(filaProd).join("")}</section>`).join("");
+  L.innerHTML=gs.map(g=>`<section class="sec" id="s-${esc(g.c.id)}" data-id="${esc(g.c.id)}"><h2>${esc(g.c.nombre)}<small>${g.ps.length}</small></h2><div class="cards">${g.ps.map(filaProd).join("")}</div></section>`).join("");
   L.querySelectorAll("[data-ver]").forEach(b=>b.onclick=()=>verDetalle(b.dataset.ver));
   L.querySelectorAll("[data-mas]").forEach(b=>b.onclick=()=>{const [pid,vi]=b.dataset.mas.split("|");sumar(pid,+vi);});
   L.querySelectorAll("[data-menos]").forEach(b=>b.onclick=()=>{const [pid,vi]=b.dataset.menos.split("|");restar(pid,+vi);});
   observarTabs(); pintarBarra();
 }
+function resumen(t){
+  const l=String(t||"").split(/\n/)[0].trim(); const m=l.match(/^.{25,}?[.;:](\s|$)/);
+  let r=(m?m[0]:l).trim(); if(r.length>130) r=r.slice(0,125).replace(/\s+\S*$/,"")+"…";
+  return r;
+}
 function filaProd(p){
-  const ag=p.estado==="agotado";
-  const meta=[p.medida,p.nota].filter(Boolean).map(esc).join(" · ");
-  return `<article class="prod">
-    <button class="foto" type="button" data-ver="${esc(p.id)}" aria-label="Ver ${esc(p.nombre)}" style="background-image:url('${esc(p.img)}')"></button>
-    <div class="cuerpo">
-      <div class="tit"><button class="nom" type="button" data-ver="${esc(p.id)}">${esc(p.nombre)}</button></div>
-      ${meta||ag?`<div class="meta">${ag?'<span class="ag">Agotado</span>'+(meta?" · ":""):""}${meta}</div>`:""}
+  const ag=p.estado==="agotado", unica=p.variantes.length===1&&p.variantes[0].nombre==="Única";
+  const chips=[p.medida?`<span class="chip">${esc(p.medida)}</span>`:"",p.nota?`<span class="chip para">${esc(p.nota)}</span>`:"",ag?'<span class="chip ag">Agotado por ahora</span>':""].join("");
+  const conSel=p.variantes.some((v,i)=>opDe(p,i));
+  const sirve=resumen(p.desc);
+  return `<article class="prod${ag?" ag":""}">
+    <div class="p-top">
+      <button class="p-foto" type="button" data-ver="${esc(p.id)}" aria-label="Ver ${esc(p.nombre)}" style="background-image:url('${esc(p.img)}')"></button>
+      <div style="min-width:0"><button class="p-nom" type="button" data-ver="${esc(p.id)}">${esc(p.nombre)}</button>${chips?`<div class="chips">${chips}</div>`:""}</div>
+    </div>
+    ${sirve?`<p class="p-sirve"><b>¿Para qué sirve?</b> ${esc(sirve)} <button type="button" data-ver="${esc(p.id)}">Leer más</button></p>`:""}
+    <div class="ops">
+      ${!unica?`<div class="ops-tit">${p.variantes.length} opciones · elige la tuya</div>`:""}
       ${p.variantes.map((v,i)=>{
-        const n=cantVar(p.id,i), unica=p.variantes.length===1&&v.nombre==="Única";
-        return `<div class="op"><span class="on">${unica?"Precio":esc(v.nombre)}${v.detalle&&!unica?`<small>${esc(v.detalle)}</small>`:""}</span><span class="pts" aria-hidden="true"></span><span class="pr num">${fmt(v.precio)}</span>
-          <span class="cnt${n?" activo":""}" ${ag?'aria-disabled="true"':""}><button type="button" data-menos="${esc(p.id)}|${i}" aria-label="Quitar ${esc(p.nombre)} ${esc(v.nombre)}">−</button><span class="num" aria-live="polite">${n}</span><button type="button" data-mas="${esc(p.id)}|${i}" aria-label="Agregar ${esc(p.nombre)} ${esc(v.nombre)}">+</button></span></div>`;
+        const n=cantVar(p.id,i);
+        return `<div class="op${n?" activo":""}"><span class="on">${unica?"Precio":esc(v.nombre)}${v.detalle&&!unica?`<small>${esc(v.detalle)}</small>`:""}</span><span class="pr num">${fmt(v.precio)}</span>
+          <span class="cnt${n?"":" cero"}" ${ag?'aria-disabled="true"':""}><button class="menos" type="button" data-menos="${esc(p.id)}|${i}" aria-label="Quitar ${esc(p.nombre)} ${esc(v.nombre)}">−</button><span class="num" aria-live="polite">${n}</span><button class="mas" type="button" data-mas="${esc(p.id)}|${i}" aria-label="Agregar ${esc(p.nombre)} ${esc(v.nombre)}">+</button></span></div>`;
       }).join("")}
+      ${conSel&&!ag?`<p class="pista">Al tocar + eliges ${esc(((p.variantes.map((v,i)=>opDe(p,i)).find(Boolean))||{}).nombre||"la variedad").toLowerCase()}.</p>`:""}
     </div></article>`;
 }
 function observarTabs(){
@@ -106,23 +117,24 @@ function pintarBarra(){
   const tot=ls.reduce((s,l)=>s+l.v.precio*l.n,0), n=ls.reduce((s,l)=>s+l.n,0);
   $("#total").textContent=fmt(tot);
   $("#cuenta").textContent=n?`${n} ${n===1?"producto":"productos"} en tu pedido`:"Tu pedido está vacío";
-  $("#verPedido").disabled=!n;
+  $("#verPedido").disabled=!n; $("#verPedido").textContent=n?"Ver mi pedido":"Ver mi pedido";
 }
 const detTxt=l=>[l.v.nombre!=="Única"?l.v.nombre:null,l.op||null].filter(Boolean).join(", ");
 function verPedido(){
   const ls=lineas(); if(!ls.length) return;
   $("#pItems").innerHTML=ls.map(l=>`<div class="item"><span class="t">${l.n} × ${esc(l.p.nombre)}${detTxt(l)?`<small>${esc(detTxt(l))}</small>`:""}</span><b class="num">${fmt(l.v.precio*l.n)}</b></div>`).join("");
   $("#pTotal").textContent=fmt(ls.reduce((s,l)=>s+l.v.precio*l.n,0));
+  const hayW=waNum().length>=8; $("#pSinWsp").hidden=hayW; $("#pEnviar").disabled=!hayW;
   avisoEnt(); abrir("#hPedido");
 }
 $("#verPedido").onclick=verPedido;
-function avisoEnt(){const r=$("#eRet").checked;$("#pDirW").hidden=r;$("#pDir").required=!r;$("#pAviso").textContent=r?`Retiro en ${DATA.tienda.puntoVenta||"punto de venta"}.`:"El valor del despacho se coordina por WhatsApp.";}
+function avisoEnt(){const r=$("#eRet").checked;$("#pDirW").hidden=r;$("#pDir").required=!r;$("#pAviso").textContent=r?(DATA.tienda.puntoVenta?`Retiro en ${DATA.tienda.puntoVenta}.`:"El lugar de retiro se coordina al confirmar."):"El valor del despacho se coordina al confirmar.";}
 $("#eRet").onchange=avisoEnt; $("#eDes").onchange=avisoEnt;
 $("#pVaciar").onclick=()=>{carro={};cambioCarro();cerrar();toast("Pedido vaciado");};
 $("#pForm").addEventListener("submit",e=>{
-  e.preventDefault(); const ls=lineas(); if(!ls.length) return;
+  e.preventDefault(); const ls=lineas(); if(!ls.length||waNum().length<8) return;
   const tot=ls.reduce((s,l)=>s+l.v.precio*l.n,0), r=$("#eRet").checked;
-  let t=`Hola Organa, quiero hacer este pedido:\n\n${ls.map(l=>`• ${l.n} x ${l.p.nombre}${detTxt(l)?" ("+detTxt(l)+")":""} - ${fmt(l.v.precio*l.n)}`).join("\n")}\n\nTotal: ${fmt(tot)}\n\nNombre: ${$("#pNom").value.trim()}\nEntrega: ${r?"Retiro en "+DATA.tienda.puntoVenta:"Despacho a "+$("#pDir").value.trim()}`;
+  let t=`Hola Organa, quiero hacer este pedido:\n\n${ls.map(l=>`• ${l.n} x ${l.p.nombre}${detTxt(l)?" ("+detTxt(l)+")":""} - ${fmt(l.v.precio*l.n)}`).join("\n")}\n\nTotal: ${fmt(tot)}\n\nNombre: ${$("#pNom").value.trim()}\nEntrega: ${r?"Retiro"+(DATA.tienda.puntoVenta?" en "+DATA.tienda.puntoVenta:""):"Despacho a "+$("#pDir").value.trim()}`;
   const nota=$("#pNota").value.trim(); if(nota) t+=`\nComentario: ${nota}`;
   const a=document.createElement("a"); a.href=waLink(t); a.target="_blank"; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove();
   toast("Abriendo WhatsApp…");
@@ -150,7 +162,7 @@ function descHTML(txt){
 function verDetalle(id){
   const p=prod(id); if(!p) return;
   $("#dNom").textContent=p.nombre; $("#dImg").style.backgroundImage=`url('${p.img}')`; $("#dImg").setAttribute("aria-label",p.nombre);
-  $("#dMeta").textContent=[p.medida,p.nota,p.estado==="agotado"?"Agotado por ahora":""].filter(Boolean).join(" · ");
+  $("#dChips").innerHTML=[p.medida?`<span class="chip">${esc(p.medida)}</span>`:"",p.nota?`<span class="chip para">${esc(p.nota)}</span>`:"",p.estado==="agotado"?'<span class="chip ag">Agotado por ahora</span>':"",...p.variantes.map(v=>`<span class="chip" style="background:var(--rosa-claro);color:var(--rosa-osc)">${v.nombre==="Única"?"":esc(v.nombre)+" · "}${fmt(v.precio)}</span>`)].join("");
   $("#dDesc").innerHTML=descHTML(p.desc); abrir("#hDetalle");
 }
 
@@ -159,13 +171,14 @@ function aMin(s){const[a,b]=String(s||"0:0").split(":").map(Number);return a*60+
 function hoy(){try{const p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Santiago",weekday:"short"}).formatToParts(new Date());return ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].indexOf(p.find(x=>x.type==="weekday").value);}catch(e){return (new Date().getDay()+6)%7;}}
 function renderTienda(){
   const t=DATA.tienda;
-  $("#subtitulo").textContent="Lista de precios"+(t.puntoVenta?" · "+t.puntoVenta:"");
-  const w=$("#wsp"); w.textContent=waVis(); w.href=waLink("Hola Organa, tengo una consulta.");
-  $("#pv").textContent=t.puntoVenta||"a coordinar";
+  const hayW=waNum().length>=8;
+  $("#filaWsp").hidden=!hayW; if(hayW){const w=$("#wsp"); w.textContent=waVis(); w.href=waLink("Hola Organa, tengo una consulta.");}
+  $("#filaPv").hidden=!t.puntoVenta; $("#pv").textContent=t.puntoVenta||"";
+  $("#filaIg").hidden=!t.instagram; $("#filaPronto").hidden=hayW&&!!t.puntoVenta;
   const m=$("#mapa"); m.hidden=!t.mapa; if(t.mapa) m.href=t.mapa;
   const ig=$("#ig"); ig.textContent="@"+(t.instagram||""); ig.href="https://instagram.com/"+(t.instagram||"");
   const hs=t.horarios||[], d=hoy();
-  $("#horas").hidden=!hs.some(h=>h.abierto);
+  $("#horas").hidden=!hs.some(h=>h.abierto); $("#bloqueHorario").hidden=!hs.some(h=>h.abierto)&&!t.notaHorario;
   $("#horas").innerHTML=hs.map((h,i)=>`<tr class="${i===d?"hoy":""}"><td>${esc(h.dia)}</td><td class="num">${h.abierto?esc(h.desde)+" – "+esc(h.hasta):"Cerrado"}</td></tr>`).join("");
   $("#notaH").textContent=t.notaHorario||"";
 }
