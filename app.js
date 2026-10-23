@@ -59,7 +59,7 @@ function renderTienda(){
   if(!hay){e.hidden=true;}else{
     const h=hs[hoy.dia], ab=h&&h.abierto&&hoy.min>=aMin(h.desde)&&hoy.min<aMin(h.hasta);
     e.hidden=false; e.className="estado-tienda "+(ab?"abierto":"cerrado");
-    e.textContent=ab?`Abierto hasta ${h.hasta}`:"Cerrado ahora";
+    e.textContent=ab?`Pedidos hasta ${h.hasta}`:"Fuera de horario";
   }
   avisoEntrega();
 }
@@ -261,7 +261,7 @@ function pintarCarro(){
 function avisoEntrega(){
   const r=$("#eRetiro").checked;
   $("#dirWrap").hidden=r; $("#cDir").required=!r;
-  $("#avisoEntrega").textContent=r?`Retiro en ${DATA?DATA.tienda.puntoVenta:""}.`:"El valor del despacho se coordina por WhatsApp.";
+  $("#avisoEntrega").textContent=r?`Retiro en ${DATA?DATA.tienda.puntoVenta:""}, en 2 a 3 días con coordinación previa.`:"Despacho en 2 a 3 días con coordinación previa. El costo de envío depende de la distancia.";
 }
 $("#eRetiro").onchange=avisoEntrega; $("#eDespacho").onchange=avisoEntrega;
 $("#pedido").addEventListener("submit",e=>{

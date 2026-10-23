@@ -11,48 +11,48 @@
   "horarios": [
    {
     "dia": "Lunes",
-    "abierto": false,
-    "desde": "10:00",
-    "hasta": "19:00"
+    "abierto": true,
+    "desde": "07:00",
+    "hasta": "18:30"
    },
    {
     "dia": "Martes",
-    "abierto": false,
-    "desde": "10:00",
-    "hasta": "19:00"
+    "abierto": true,
+    "desde": "07:00",
+    "hasta": "18:30"
    },
    {
     "dia": "Miércoles",
-    "abierto": false,
-    "desde": "10:00",
-    "hasta": "19:00"
+    "abierto": true,
+    "desde": "07:00",
+    "hasta": "18:30"
    },
    {
     "dia": "Jueves",
-    "abierto": false,
-    "desde": "10:00",
-    "hasta": "19:00"
+    "abierto": true,
+    "desde": "07:00",
+    "hasta": "18:30"
    },
    {
     "dia": "Viernes",
-    "abierto": false,
-    "desde": "10:00",
-    "hasta": "19:00"
+    "abierto": true,
+    "desde": "07:00",
+    "hasta": "18:30"
    },
    {
     "dia": "Sábado",
-    "abierto": false,
-    "desde": "10:00",
-    "hasta": "19:00"
+    "abierto": true,
+    "desde": "07:00",
+    "hasta": "17:00"
    },
    {
     "dia": "Domingo",
-    "abierto": false,
-    "desde": "10:00",
-    "hasta": "19:00"
+    "abierto": true,
+    "desde": "07:00",
+    "hasta": "17:00"
    }
   ],
-  "notaHorario": "Horario de retiro a coordinar por WhatsApp.",
+  "notaHorario": "Horario de recepción de pedidos. Entregas y despachos en 2 a 3 días, con coordinación previa. El costo de envío depende de la distancia.",
   "link": "https://mtcjmatti-crypto.github.io/ORGANA-/"
  },
  "claveHash": "c95976d1e8036f879f88da6ffe272dd64e10899eb1a32249a9ec54a8472cd8cd",
