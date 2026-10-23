@@ -36,7 +36,7 @@ function cantVar(pid,vi){let n=0;for(const k in carro){const [a,b]=k.split("|");
 
 function grupos(){
   const vistos=new Set();
-  const gs=DATA.categorias.map(c=>{const ps=visibles().filter(p=>p.cat[0]===c.id&&!vistos.has(p.id));ps.forEach(p=>vistos.add(p.id));return {c,ps};});
+  const gs=DATA.categorias.map(c=>{const ps=visibles().filter(p=>p.cat.includes(c.id));ps.forEach(p=>vistos.add(p.id));return {c,ps};});
   const otros=visibles().filter(p=>!vistos.has(p.id)); if(otros.length) gs.push({c:{id:"otros",nombre:"Otros"},ps:otros});
   return gs.filter(g=>g.ps.length);
 }
@@ -76,7 +76,7 @@ function filaProd(p){
     </div>
     ${sirve?`<p class="p-sirve"><b>¿Para qué sirve?</b> ${esc(sirve)} <button type="button" data-ver="${esc(p.id)}">Leer más</button></p>`:""}
     <div class="ops">
-      ${!unica?`<div class="ops-tit">${p.variantes.length} opciones · elige la tuya</div>`:""}
+      ${!unica?`<div class="ops-tit">${p.variantes.length===1?"1 opción":p.variantes.length+" opciones · elige la tuya"}</div>`:""}
       ${p.variantes.map((v,i)=>{
         const n=cantVar(p.id,i);
         return `<div class="op${n?" activo":""}"><span class="on">${unica?"Precio":esc(v.nombre)}${v.detalle&&!unica?`<small>${esc(v.detalle)}</small>`:""}</span><span class="pr num">${fmt(v.precio)}</span>
@@ -110,18 +110,19 @@ $("#lista").addEventListener("click",e=>{
   if(b.dataset.mas) sumar(pid,+vi); else restar(pid,+vi);
 });
 function refrescar(pid){
-  const el=document.querySelector(`.prod[data-id="${CSS.escape(pid)}"]`), p=prod(pid);
-  if(el&&p){ const foco=document.activeElement&&document.activeElement.closest(".prod")===el?document.activeElement.getAttribute("data-mas")||document.activeElement.getAttribute("data-menos"):null;
-    el.outerHTML=filaProd(p);
-    if(foco){const nb=document.querySelector(`.prod[data-id="${CSS.escape(pid)}"] [data-mas="${foco}"]`)||document.querySelector(`.prod[data-id="${CSS.escape(pid)}"] [data-menos="${foco}"]`); if(nb) nb.focus({preventScroll:true});}
-  }
+  const p=prod(pid), act=document.activeElement;
+  if(p) document.querySelectorAll(`.prod[data-id="${CSS.escape(pid)}"]`).forEach(el=>{
+    const tenia=act&&act.closest&&act.closest(".prod")===el, at=tenia?(act.hasAttribute("data-mas")?"data-mas":act.hasAttribute("data-menos")?"data-menos":null):null, val=at?act.getAttribute(at):null;
+    const tmp=document.createElement("div"); tmp.innerHTML=filaProd(p).trim(); const nuevo=tmp.firstElementChild; el.replaceWith(nuevo);
+    if(at){const nb=nuevo.querySelector(`[${at}="${CSS.escape(val)}"]`); if(nb) nb.focus({preventScroll:true});}
+  });
   pintarBarra();
 }
 $("#q").addEventListener("input",e=>{busq=normal(e.target.value.trim());render();});
 
 /* ---------- pedido ---------- */
 function sumar(pid,vi){
-  const p=prod(pid), op=opDe(p,vi);
+  const p=prod(pid); if(!p||p.estado==="agotado") return; const op=opDe(p,vi);
   if(op){ elegir(p,vi,op); return; }
   const k=`${pid}|${vi}|`; carro[k]=(carro[k]||0)+1; guardarCarro(); refrescar(pid);
 }
