@@ -104,7 +104,7 @@ const PALABRAS=[
   [/labio|boca seca|comisura/,["labios_secos"]],
   [/estres|ansiedad|nervio|angustia|agobi|tension/,["estres"]],
   [/dormir|duermo|insomnio|sueno|desvel|descans|despierto en la noche/,["sueno"]],
-  [/dolor de cabeza|jaqueca|migran|cefalea/,["cabeza"]],
+  [/(dolor|duele|duelen|dolia)[a-z]* (de |la |el )?cabeza|cabeza.{0,15}(duele|dolor)|jaqueca|migran|cefalea/,["cabeza"]],
   [/colico|menstrua|regla|espalda|lumbar|cuello|contractura|muscul|dolor/,["musculos"]],
   [/congestion|nariz tapada|resfri|sinusitis|alergia nasal/,["nariz"]],
   [/concentra|estudi|enfoc|memoria/,["concentracion"]],
