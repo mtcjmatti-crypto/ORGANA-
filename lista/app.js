@@ -159,6 +159,7 @@ $("#pForm").addEventListener("submit",e=>{
   const tot=ls.reduce((s,l)=>s+l.v.precio*l.n,0), r=$("#eRet").checked;
   let t=`Hola Organa, quiero hacer este pedido:\n\n${ls.map(l=>`• ${l.n} x ${l.p.nombre}${detTxt(l)?" ("+detTxt(l)+")":""} - ${fmt(l.v.precio*l.n)}`).join("\n")}\n\nTotal: ${fmt(tot)}\n\nNombre: ${$("#pNom").value.trim()}\nEntrega: ${r?"Retiro"+(DATA.tienda.puntoVenta?" en "+DATA.tienda.puntoVenta:""):"Despacho a "+$("#pDir").value.trim()}`;
   const nota=$("#pNota").value.trim(); if(nota) t+=`\nComentario: ${nota}`;
+  const diag=window.Asesora&&Asesora.resumen(); if(diag) t+=`\n\nLo que me pasa: ${diag}`;
   const a=document.createElement("a"); a.href=waLink(t); a.target="_blank"; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove();
   toast("Abriendo WhatsApp…");
 });
@@ -235,5 +236,15 @@ document.querySelectorAll("[data-cerrar]").forEach(b=>b.onclick=cerrar);
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&abierta)cerrar();});
 let tt; function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),1800);}
 
-cargar();
+/* ---------- asesora ---------- */
+window.OrganaTienda={
+  datos:()=>DATA,
+  agregar:(pid,vi,op)=>{ const k=`${pid}|${vi}|${op||""}`; carro[k]=(carro[k]||0)+1; guardarCarro(); refrescar(pid); },
+  abrirPedido:()=>verPedido()
+};
+if(window.Asesora){
+  Asesora.init({tienda:window.OrganaTienda,flor:"deco/peonia.png",flor2:"deco/eucalipto.png"});
+  document.querySelectorAll("[data-asesora]").forEach(b=>b.onclick=()=>Asesora.abrir());
+}
+cargar().then(()=>{ if(window.Asesora&&DATA) setTimeout(()=>Asesora.abrirSiPrimeraVez(),400); });
 })();

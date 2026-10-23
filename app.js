@@ -270,6 +270,7 @@ $("#pedido").addEventListener("submit",e=>{
   const r=$("#eRetiro").checked;
   let t=`Hola Organa, quiero hacer este pedido:\n\n${lineas}\n\nTotal: ${fmt(tot)}\n\nNombre: ${$("#cNombre").value.trim()}\nEntrega: ${r?"Retiro en "+DATA.tienda.puntoVenta:"Despacho a "+$("#cDir").value.trim()}`;
   const nota=$("#cNota").value.trim(); if(nota) t+=`\nComentario: ${nota}`;
+  const diag=window.Asesora&&Asesora.resumen(); if(diag) t+=`\n\nLo que me pasa: ${diag}`;
   const a=document.createElement("a"); a.href=waLink(t); a.target="_blank"; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove();
   toast("Abriendo WhatsApp con tu pedido…");
 });
@@ -705,5 +706,15 @@ function aDataURL(b){return new Promise(r=>{const f=new FileReader();f.onload=()
   puntos.forEach((b,n)=>b.onclick=()=>{ir(n);auto();});
   auto();
 })();
-cargar();
+/* --- asesora --- */
+window.OrganaTienda={
+  datos:()=>DATA,
+  agregar:(pid,vi,op)=>{ const p=prod(pid); if(p) agregar(p,vi,op,1); },
+  abrirPedido:()=>{ pintarCarro(); abrir("#carro"); }
+};
+if(window.Asesora){
+  Asesora.init({tienda:window.OrganaTienda,flor:"deco/peonia.png",flor2:"deco/eucalipto.png"});
+  document.querySelectorAll("[data-asesora]").forEach(b=>b.onclick=()=>Asesora.abrir());
+}
+cargar().then(()=>{ if(window.Asesora&&DATA) setTimeout(()=>Asesora.abrirSiPrimeraVez(),400); });
 })();

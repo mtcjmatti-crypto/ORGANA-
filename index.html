@@ -297,6 +297,7 @@ textarea.inp{resize:vertical;line-height:1.5}
 .pie-form{position:sticky;bottom:0;background:var(--crema);padding-block:12px;display:flex;gap:10px;flex-wrap:wrap;border-top:1px solid var(--linea)}
 .confirmar{background:color-mix(in srgb,var(--alerta) 12%,var(--papel));border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
 
+@media (max-width:430px){.marca>span{display:none}.marca img{width:40px!important}}
 /* Compartir / QR */
 .btn-compartir{display:flex;align-items:center;gap:7px;border:1.5px solid var(--linea);background:var(--papel);color:var(--oliva-osc);padding:9px 14px;border-radius:999px;font-weight:700;flex:none}
 .compartir{position:fixed;z-index:70;left:50%;top:50%;transform:translate(-50%,-50%);width:min(380px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto;background:var(--papel);border-radius:24px;padding:28px 24px 24px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;box-shadow:0 20px 60px var(--sombra)}
@@ -320,6 +321,10 @@ footer.pie-pag span button{color:inherit;opacity:1}
     </a>
     <span class="sp"></span>
     <span class="estado-tienda" id="estadoTienda" hidden></span>
+    <button class="btn-compartir" data-asesora type="button" aria-label="Te ayudo a elegir">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>
+      <span>Te ayudo</span>
+    </button>
     <button class="btn-compartir" id="abrirCompartir" type="button" aria-label="Compartir catálogo">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>
       <span>Compartir</span>
@@ -340,6 +345,7 @@ footer.pie-pag span button{color:inherit;opacity:1}
     <p>Productos para el cuidado y bienestar del cuerpo y mente.</p>
     <div class="cta">
       <a class="btn btn-claro" href="#catalogo">Ver catálogo</a>
+      <button class="btn btn-oliva" data-asesora type="button">Te ayudo a elegir</button>
       <a class="btn btn-borde" id="wspHero" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
     </div>
   </div>
@@ -479,6 +485,7 @@ footer.pie-pag span button{color:inherit;opacity:1}
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="planilla.js?v=2"></script>
-<script src="app.js?v=7"></script>
+<script src="asesora.js?v=1"></script>
+<script src="app.js?v=8"></script>
 </body>
 </html>
