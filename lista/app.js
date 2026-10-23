@@ -25,7 +25,7 @@ async function cargar(){
   try{
     const pl=await Promise.race([window.cargarPlanilla(),new Promise((_,no)=>setTimeout(()=>no(new Error("tiempo")),9000))]);
     store("planilla",JSON.stringify(pl)); DATA=pl; render(true);
-  }catch(e){ console.warn("Planilla no disponible:",e.message); if(DATA) $("#actualizado").textContent="Precios guardados"; }
+  }catch(e){ console.warn("Planilla no disponible:",e.message); if(DATA) $("#actualizado").textContent=""; }
   if(!DATA) $("#lista").innerHTML='<p class="vacio">No se pudo cargar la lista. Revisa tu conexión y recarga.</p>';
 }
 
@@ -50,14 +50,12 @@ function render(alDia){
   renderTienda();
   const gs=grupos().map(g=>({c:g.c,ps:g.ps.filter(coincide)})).filter(g=>g.ps.length);
   $("#tabs").innerHTML=gs.map(g=>`<button class="tab" type="button" data-id="${esc(g.c.id)}">${esc(g.c.nombre)}</button>`).join("");
-  document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{const s=document.getElementById("s-"+t.dataset.id);if(s)s.scrollIntoView({behavior:"smooth"});});
+  document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{const s=document.getElementById("s-"+t.dataset.id);if(!s)return;
+    marcarTab(t.dataset.id); pausaTabs=Date.now(); s.scrollIntoView({behavior:"smooth"});});
   const L=$("#lista");
   if(!gs.length){L.innerHTML='<p class="vacio">No hay productos con esa búsqueda.</p>';pintarBarra();return;}
   L.innerHTML=gs.map(g=>`<section class="sec" id="s-${esc(g.c.id)}" data-id="${esc(g.c.id)}"><h2>${esc(g.c.nombre)}<small>${g.ps.length}</small></h2><div class="cards">${g.ps.map(filaProd).join("")}</div></section>`).join("");
-  L.querySelectorAll("[data-ver]").forEach(b=>b.onclick=()=>verDetalle(b.dataset.ver));
-  L.querySelectorAll("[data-mas]").forEach(b=>b.onclick=()=>{const [pid,vi]=b.dataset.mas.split("|");sumar(pid,+vi);});
-  L.querySelectorAll("[data-menos]").forEach(b=>b.onclick=()=>{const [pid,vi]=b.dataset.menos.split("|");restar(pid,+vi);});
-  observarTabs(); pintarBarra();
+  observarTabs(); dispatchEvent(new Event("scroll")); pintarBarra();
 }
 function resumen(t){
   const l=String(t||"").split(/\n/)[0].trim(); const m=l.match(/^.{25,}?[.;:](\s|$)/);
@@ -69,7 +67,7 @@ function filaProd(p){
   const chips=[p.medida?`<span class="chip">${esc(p.medida)}</span>`:"",p.nota?`<span class="chip para">${esc(p.nota)}</span>`:"",ag?'<span class="chip ag">Agotado por ahora</span>':""].join("");
   const conSel=p.variantes.some((v,i)=>opDe(p,i));
   const sirve=resumen(p.desc);
-  return `<article class="prod${ag?" ag":""}">
+  return `<article class="prod${ag?" ag":""}" data-id="${esc(p.id)}">
     <div class="p-top">
       <button class="p-foto" type="button" data-ver="${esc(p.id)}" aria-label="Ver ${esc(p.nombre)}" style="background-image:url('${esc(p.img)}')"></button>
       <div style="min-width:0"><button class="p-nom" type="button" data-ver="${esc(p.id)}">${esc(p.nombre)}</button>${chips?`<div class="chips">${chips}</div>`:""}</div>
@@ -85,14 +83,37 @@ function filaProd(p){
       ${conSel&&!ag?`<p class="pista">Al tocar + eliges ${esc(((p.variantes.map((v,i)=>opDe(p,i)).find(Boolean))||{}).nombre||"la variedad").toLowerCase()}.</p>`:""}
     </div></article>`;
 }
+let pausaTabs=0;
+function marcarTab(id){
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current",String(t.dataset.id===id)));
+  const a=document.querySelector('.tab[aria-current="true"]'); if(a){const n=a.parentElement;n.scrollTo({left:a.offsetLeft-n.clientWidth/2+a.clientWidth/2,behavior:"smooth"});}
+}
 function observarTabs(){
-  if(!("IntersectionObserver" in window)) return;
-  if(window._obs) window._obs.disconnect();
-  window._obs=new IntersectionObserver(es=>{
-    es.forEach(e=>{ if(e.isIntersecting){ document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current",String(t.dataset.id===e.target.dataset.id)));
-      const a=document.querySelector('.tab[aria-current="true"]'); if(a) a.scrollIntoView({block:"nearest",inline:"center"}); } });
-  },{rootMargin:"-160px 0px -60% 0px"});
-  document.querySelectorAll(".sec").forEach(s=>window._obs.observe(s));
+  if(window._tabsScroll) return;
+  window._tabsScroll=true;
+  let tic=false;
+  addEventListener("scroll",()=>{ if(tic) return; tic=true; requestAnimationFrame(()=>{ tic=false;
+    if(Date.now()-pausaTabs<1000) return;
+    const tope=(document.querySelector(".cab").getBoundingClientRect().bottom||0)+20;
+    let actual=null; document.querySelectorAll(".sec").forEach(s=>{ if(s.getBoundingClientRect().top<=tope) actual=s.dataset.id; });
+    if(!actual){const s=document.querySelector(".sec"); actual=s&&s.dataset.id;}
+    const cur=document.querySelector('.tab[aria-current="true"]');
+    if(actual&&(!cur||cur.dataset.id!==actual)) marcarTab(actual);
+  }); },{passive:true});
+}
+$("#lista").addEventListener("click",e=>{
+  const b=e.target.closest("[data-ver],[data-mas],[data-menos]"); if(!b) return;
+  if(b.dataset.ver) return verDetalle(b.dataset.ver);
+  const [pid,vi]=(b.dataset.mas||b.dataset.menos).split("|");
+  if(b.dataset.mas) sumar(pid,+vi); else restar(pid,+vi);
+});
+function refrescar(pid){
+  const el=document.querySelector(`.prod[data-id="${CSS.escape(pid)}"]`), p=prod(pid);
+  if(el&&p){ const foco=document.activeElement&&document.activeElement.closest(".prod")===el?document.activeElement.getAttribute("data-mas")||document.activeElement.getAttribute("data-menos"):null;
+    el.outerHTML=filaProd(p);
+    if(foco){const nb=document.querySelector(`.prod[data-id="${CSS.escape(pid)}"] [data-mas="${foco}"]`)||document.querySelector(`.prod[data-id="${CSS.escape(pid)}"] [data-menos="${foco}"]`); if(nb) nb.focus({preventScroll:true});}
+  }
+  pintarBarra();
 }
 $("#q").addEventListener("input",e=>{busq=normal(e.target.value.trim());render();});
 
@@ -100,12 +121,12 @@ $("#q").addEventListener("input",e=>{busq=normal(e.target.value.trim());render()
 function sumar(pid,vi){
   const p=prod(pid), op=opDe(p,vi);
   if(op){ elegir(p,vi,op); return; }
-  const k=`${pid}|${vi}|`; carro[k]=(carro[k]||0)+1; cambioCarro();
+  const k=`${pid}|${vi}|`; carro[k]=(carro[k]||0)+1; guardarCarro(); refrescar(pid);
 }
 function restar(pid,vi){
   const ks=Object.keys(carro).filter(k=>{const [a,b]=k.split("|");return a===pid&&+b===vi;});
   const k=ks[ks.length-1]; if(!k) return;
-  carro[k]--; if(carro[k]<=0) delete carro[k]; cambioCarro();
+  carro[k]--; if(carro[k]<=0) delete carro[k]; guardarCarro(); refrescar(pid);
 }
 function cambioCarro(){ guardarCarro(); render(); }
 function lineas(){
@@ -145,7 +166,7 @@ function elegir(p,vi,op){
   $("#eTit").textContent=`${op.nombre||"Elige"}`;
   $("#eSub").textContent=`${p.nombre}${p.variantes[vi].nombre!=="Única"?" · "+p.variantes[vi].nombre:""}`;
   $("#eOps").innerHTML=op.valores.map(v=>`<button type="button">${esc(v)}</button>`).join("");
-  [...$("#eOps").children].forEach((b,i)=>b.onclick=()=>{const k=`${p.id}|${vi}|${op.valores[i]}`;carro[k]=(carro[k]||0)+1;cerrar();cambioCarro();toast(`Agregado: ${op.valores[i]}`);});
+  [...$("#eOps").children].forEach((b,i)=>b.onclick=()=>{const k=`${p.id}|${vi}|${op.valores[i]}`;carro[k]=(carro[k]||0)+1;cerrar();guardarCarro();refrescar(p.id);toast(`Agregado: ${op.valores[i]}`);});
   abrir("#hElegir");
 }
 

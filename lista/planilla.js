@@ -24,7 +24,8 @@ function parseCSV(t){
 }
 async function hoja(nombre){
   const url=`https://docs.google.com/spreadsheets/d/${PLANILLA_ID}/gviz/tq?tqx=out:csv&headers=1&sheet=${encodeURIComponent(nombre)}&_=${Date.now()}`;
-  const r=await fetch(url,{cache:"no-store"});
+  const r=await fetch(url,{cache:"no-store",redirect:"manual"});
+  if(r.type==="opaqueredirect"||r.status===0) throw new Error("planilla no compartida");
   if(!r.ok) throw new Error("hoja "+nombre+" "+r.status);
   const t=await r.text();
   if(/^\s*</.test(t)) throw new Error("planilla no pública");
