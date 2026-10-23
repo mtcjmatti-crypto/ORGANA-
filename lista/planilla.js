@@ -3,7 +3,7 @@
 (function(){
 "use strict";
 const PLANILLA_ID="1OiFkUlTdYgEvZ_kObDu1QCOutXphuvjacu7N4Imr-Sk";
-const BASE_IMG="https://mtcjmatti-crypto.github.io/ORGANA-/img/";
+const BASE_IMG="https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/";
 const DIAS=["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
 
 const normal=s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().trim();

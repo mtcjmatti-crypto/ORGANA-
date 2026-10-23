@@ -93,7 +93,7 @@
     "rostro"
    ],
    "nombre": "Barra de limpieza facial",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/barra.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/barra.jpg",
    "medida": "60 grs.",
    "desc": "Corresponde a una barra Sindet, no contiene jabón, no irrita la piel. Especialmente elaborada con avena coloidal.",
    "variantes": [
@@ -114,7 +114,7 @@
     "rostro"
    ],
    "nombre": "Espuma de limpieza facial",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/espuma.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/espuma.jpg",
    "medida": "120 ml.",
    "nota": "Ideal para pieles sensibles. Mixta a grasa.",
    "desc": "Una espuma facial natural limpia profundamente sin resecar, es ideal para pieles sensibles al no contener sulfatos ni químicos agresivos, mantiene el pH equilibrado, no obstruye los poros y deja la piel suave e hidratada gracias a extractos como aloe vera, manzanilla o caléndula. Además, aporta beneficios según sus ingredientes (como acción antiinflamatoria, antibacterial o reguladora de grasa), puede usarse a diario sin dañar la barrera cutánea, es más ecológica por sus fórmulas biodegradables y envases reciclables, y ofrece una sensación fresca y ligera perfecta para todo tipo de piel.",
@@ -132,7 +132,7 @@
     "rostro"
    ],
    "nombre": "Agua micelar",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/micelar.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/micelar.jpg",
    "medida": "100 ml.",
    "nota": "Agua micelar de caléndula",
    "desc": "El agua micelar es un limpiador facial multifuncional que remueve impurezas, grasa y maquillaje sin agredir la piel.\nSus micelas actúan como imanes que atraen la suciedad sin necesidad de frotar, siendo ideal para todo tipo de piel, incluso las sensibles.\nLimpia en profundidad respetando la barrera cutánea y el pH de la piel, sin dejar sensación tirante ni grasa.\nTonifica, calma y deja el rostro fresco y suave en un solo paso, sin requerir enjuague.",
@@ -150,7 +150,7 @@
     "rostro"
    ],
    "nombre": "Agua de rosas",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/rosas.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/rosas.jpg",
    "medida": "100 ml.",
    "desc": "El agua de rosas ayuda a hidratar, calmar y refrescar la piel, reduciendo rojeces, inflamación e irritaciones gracias a sus propiedades antiinflamatorias. También actúa como tónico natural, equilibrando el pH y ayudando a cerrar suavemente los poros. Su poder antioxidante contribuye a proteger la piel del daño ambiental y retrasar signos de envejecimiento. Además, aporta luminosidad, suaviza la textura de la piel y deja una sensación de frescura inmediata. Su aroma natural también tiene un efecto relajante que puede disminuir el estrés y mejorar la experiencia de cuidado personal. Es un excelente sellador de maquillaje.",
    "variantes": [
@@ -167,7 +167,7 @@
     "rostro"
    ],
    "nombre": "Agua de azahar",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/azahar.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/azahar.jpg",
    "medida": "100 ml.",
    "desc": "El agua de azahar ofrece múltiples beneficios y usos gracias a sus propiedades calmantes, refrescantes y equilibrantes: ayuda a relajar la piel sensible o irritada, aporta hidratación ligera, mejora la luminosidad del rostro y equilibra la producción de grasa, siendo ideal para pieles mixtas, grasas y maduras; también se usa para aromaterapia por su aroma suave y relajante que reduce el estrés, y en algunos casos se emplea en compresas, tónicos faciales, mezclas cosméticas o incluso en preparaciones culinarias para aportar un toque floral y delicado.",
    "variantes": [
@@ -184,7 +184,7 @@
     "rostro"
    ],
    "nombre": "Agua de caléndula",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/calendula.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/calendula.jpg",
    "medida": "100 ml.",
    "desc": "El agua de caléndula ofrece múltiples beneficios gracias a sus propiedades calmantes, antiinflamatorias y regeneradoras: ayuda a aliviar irritaciones, enrojecimiento y sensibilidad de la piel, favorece la cicatrización de pequeñas heridas, quemaduras leves o rozaduras, hidrata suavemente sin dejar sensación grasa, y contribuye a equilibrar pieles secas, sensibles, con dermatitis o tendencia al acné. Además, puede usarse como tónico facial para refrescar y tonificar, como calmante después del sol o depilación, para aliviar irritaciones en bebés, e incluso como ingrediente en mascarillas, cremas o compresas para desinflamar y mejorar la apariencia de la piel.",
    "variantes": [
@@ -201,7 +201,7 @@
     "rostro"
    ],
    "nombre": "Agua termal",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/termal.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/termal.jpg",
    "medida": "100 ml.",
    "desc": "El agua termal es una importante fuente de nutrientes hidratantes para la piel, y numerosos estudios han demostrado que, tras usar este tipo de productos durante una semana completa, es posible reducir la sequedad del rostro entre un 80% y 90%.\nAdemás, se recomienda su uso durante todo el año, ya que ayuda a evitar la sequedad causada por el aire acondicionado, los cambios climáticos y la calefacción, entre otros agentes externos.\nTiene poder antioxidante, calma el dolor y las molestias de una piel que ha sufrido alguna quemadura, regenera el tejido celular y sirve también como fijador de maquillaje.",
    "variantes": [
@@ -218,7 +218,7 @@
     "rostro"
    ],
    "nombre": "Ácido hialurónico",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/hialuronico.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/hialuronico.jpg",
    "desc": "¿Qué beneficios realiza el A. H. en tu piel?\n1. Hidrata profundamente.\n2. Reduce las arrugas y líneas de expresión.\n3. Mejora de la textura y luminosidad.\n4. Favorece la regeneración cutánea.\n5. Compatible con todo tipo de piel.",
    "variantes": [
     {
@@ -234,7 +234,7 @@
     "rostro"
    ],
    "nombre": "Cremas faciales",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/cremas.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/cremas.jpg",
    "medida": "35 gr.",
    "nota": "Cuida y consiente tu piel",
    "desc": "Elige la crema según tu tipo de piel.",
@@ -267,7 +267,7 @@
     "rostro"
    ],
    "nombre": "Sérum de pestañas",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/serum.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/serum.jpg",
    "medida": "10 gr",
    "nota": "Uso nocturno",
    "desc": "Un sérum de pestañas con aceite de ricino, almendras dulces y vitamina E fortalece y nutre profundamente las pestañas, estimulando su crecimiento natural gracias a las propiedades densificadoras del aceite de ricino; las almendras dulces aportan suavidad, hidratación y evitan la caída por quiebre, mientras que la vitamina E actúa como un poderoso antioxidante que protege la fibra capilar. Además mejora su apariencia general con uso constante.",
@@ -285,7 +285,7 @@
     "rostro"
    ],
    "nombre": "Contorno de ojos",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/contorno.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/contorno.jpg",
    "medida": "10 gr",
    "desc": "Un contorno de ojos elaborado con aceite de jojoba ayuda a suavizar líneas de expresión, mejorar la elasticidad y mantener la zona hidratada gracias a su capacidad de imitar el sebo natural de la piel, lo que refuerza la barrera cutánea sin obstruir poros; al mismo tiempo, la manzanilla aporta un efecto calmante y antiinflamatorio que reduce bolsas, hinchazón y enrojecimiento, dejando el contorno más luminoso, descansado y con una apariencia más firme y saludable.",
    "variantes": [
@@ -303,7 +303,7 @@
     "cuerpo"
    ],
    "nombre": "Exfoliante de café",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/exfoliante.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/exfoliante.jpg",
    "medida": "120 gr",
    "nota": "Rostro y cuerpo",
    "desc": "Este exfoliante corporal y facial combina el poder estimulante del café, la hidratación profunda del aceite de coco y la suavidad de las almendras molidas para renovar tu piel desde la primera aplicación.\nBeneficios principales: remueve células muertas, unifica el tono de la piel y atenúa manchas, devolviéndole su luminosidad natural.\nMientras el café y la almendra renuevan la textura, el aceite de coco nutre profundamente, dejando la piel suave, firme y sedosa sin resecarla.",
@@ -321,7 +321,7 @@
     "cabello"
    ],
    "nombre": "Shampoo sólido",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/shampoo-solido.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/shampoo-solido.jpg",
    "medida": "60 grs.",
    "desc": "Elige la variedad según tu tipo de cabello.",
    "variantes": [
@@ -364,7 +364,7 @@
     "cabello"
    ],
    "nombre": "Acondicionador sólido",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/acondicionador.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/acondicionador.jpg",
    "medida": "50 grs.",
    "desc": "Su función es reparar y sellar la cutícula. También ayuda a desenredar fácilmente los nudos sin que dañes o quiebres tu melena, y si sufres de resequedad o frizz, te ayudará a combatirlos haciendo que tu cabello se vea más unificado y saludable. El principal beneficio es que al no ser envasados en empaques de plástico, no generan residuos.\nSu presentación sólida implica el uso de menos agua en su elaboración y para su preparación se utilizan menos químicos, previniendo de este modo la contaminación del agua. Además, el producto dura más ya que en cada uso se gasta muy poco.",
    "variantes": [
@@ -381,7 +381,7 @@
     "cabello"
    ],
    "nombre": "Bomba capilar",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/bomba.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/bomba.jpg",
    "medida": "150 grs.",
    "nota": "Crema de masajes",
    "desc": "Una crema capilar natural con aceite de coco y fitoqueratina ofrece una hidratación profunda que suaviza y nutre el cabello seco o dañado, reduce el frizz y mejora la elasticidad gracias a los ácidos grasos del coco, mientras que la fitoqueratina (keratina vegetal) ayuda a reparar la fibra capilar, fortalecerla, rellenar porosidad y aumentar el brillo. Su uso regular protege el cabello del daño térmico y ambiental, facilita el desenredado, mejora la definición en rizos y ondas, y deja la melena más manejable, resistente y saludable, sin sensación pesada ni ingredientes agresivos.",
@@ -399,7 +399,7 @@
     "cabello"
    ],
    "nombre": "Shampoo líquido Línea Ortiga",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/ortiga.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/ortiga.jpg",
    "medida": "250 grs.",
    "nota": "Línea Ortiga · Cola de caballo",
    "desc": "Shampoo líquido que combina las propiedades de la ortiga con activos como el baicapil para fortalecer el cabello desde la raíz. La acción del romero no sólo combate la caída sino que también la caspa.\nExperimenta una limpieza suave y natural, sin parabenos ni químicos agresivos en tu cuero cabelludo.",
@@ -421,7 +421,7 @@
     "cabello"
    ],
    "nombre": "Crema capilar Línea Ortiga",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/ortiga.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/ortiga.jpg",
    "medida": "120 grs.",
    "nota": "Línea Ortiga · Cola de caballo",
    "desc": "Estas cremas capilares se pueden utilizar para masajes con enjuague posterior a los 30 minutos o como acondicionador durante la ducha. Esta fórmula está diseñada para mejorar la hidratación y brillo. La cola de caballo y la ortiga, ricas en nutrientes, ayudan a frenar la caída del cabello, fortaleciendo las hebras desde la raíz.",
@@ -443,7 +443,7 @@
     "cabello"
    ],
    "nombre": "Tónico de romero",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/tonico.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/tonico.jpg",
    "medida": "100 ml",
    "nota": "Fortalecedor capilar · Fortalece desde la raíz",
    "desc": "El tónico fortalecedor capilar de romero ayuda a estimular la circulación en el cuero cabelludo, favoreciendo el crecimiento del cabello y reduciendo la caída, además de fortalecer los folículos, aportar brillo natural y mejorar la densidad del pelo; también contribuye a equilibrar la grasa, aliviar la caspa y refrescar el cuero cabelludo gracias a sus propiedades antimicrobianas y antiinflamatorias. En cuanto a sus usos, puede aplicarse diariamente sobre el cuero cabelludo húmedo o seco, masajeando suavemente para activar la microcirculación; también puede usarse como complemento después del lavado, como tónico nocturno o como tratamiento preventivo en épocas de mayor caída capilar.",
@@ -461,7 +461,7 @@
     "cabello"
    ],
    "nombre": "Protector de calor",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/protector.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/protector.jpg",
    "medida": "120 ml.",
    "nota": "Nuestro producto natural",
    "desc": "Cuida el cabello usando ingredientes de origen vegetal que crean una capa ligera y no tóxica alrededor de la fibra capilar. Sus principales beneficios son:\n• Reduce el daño por calor al actuar como barrera frente a planchas, secadores y rizadores.\n• Hidrata y nutre gracias a aceites y extractos naturales que aportan suavidad sin dejar el pelo pesado.\n• Disminuye el frizz.\n• Protege sin químicos agresivos, lo que lo hace ideal para cabellos sensibles o tratados químicamente.",
@@ -480,7 +480,7 @@
     "cuerpo"
    ],
    "nombre": "Jabones",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/jabones.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/jabones.jpg",
    "nota": "Natural · Neutral · Libre de alcohol",
    "desc": "Jabones naturales, neutrales y libres de alcohol. Elige formato y aroma.",
    "opcion": {
@@ -533,7 +533,7 @@
     "bano"
    ],
    "nombre": "Baño relajación",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/bano.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/bano.jpg",
    "desc": "Polvos espumosos: crean una espuma aromática y relajante.\nBombas efervescentes: hacen efervescencia en el agua. Relajan y dejan la piel suave.\nBombas espuma: dan espuma en el agua. Relajan y dejan la piel suave.",
    "variantes": [
     {
@@ -561,7 +561,7 @@
     "cuerpo"
    ],
    "nombre": "Bálsamo de pies",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/pies.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/pies.jpg",
    "nota": "Ideal para talones y zonas resecas.",
    "desc": "Un bálsamo de pies hecho con rosa mosqueta, manteca de karité y aceite de almendras dulces hidrata profundamente la piel seca y agrietada, acelera la regeneración de talones dañados, suaviza durezas, aporta elasticidad, reduce la descamación y deja los pies más nutridos, flexibles y protegidos gracias a sus propiedades reparadoras y emolientes.",
    "variantes": [
@@ -578,7 +578,7 @@
     "cuerpo"
    ],
    "nombre": "Bálsamo de caléndula y manzanilla",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/balsamo-calendula.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/balsamo-calendula.jpg",
    "medida": "20 ml",
    "desc": "Es uno de los remedios más nobles y polifacéticos que existen para el cuidado de la piel, destacando principalmente por sus extraordinarias propiedades calmantes, antiinflamatorias y regeneradoras. Al combinar el poder de estas dos plantas medicinales, el bálsamo se convierte en un alivio inmediato para pieles sensibles, irritadas o reactivas, reduciendo de forma eficaz el enrojecimiento. Su alta capacidad cicatrizante estimula la regeneración celular y la producción de colágeno, lo que acelera la curación de pequeñas heridas, quemaduras superficiales, rozaduras y arañazos, minimizando además la formación de marcas.",
    "variantes": [
@@ -595,7 +595,7 @@
     "cuerpo"
    ],
    "nombre": "Ungüento de matico",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/matico.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/matico.jpg",
    "medida": "35 ml",
    "desc": "Es una crema que aporta propiedades cicatrizantes y antiinflamatorias, además de ser una crema antibacteriana y antifúngica. Contiene extracto de matico, caléndula y aloe vera, que la hace un ungüento ideal para pieles resecas con problemas de cicatrización.",
    "variantes": [
@@ -612,7 +612,7 @@
     "bienestar"
    ],
    "nombre": "Punto Calma bálsamo",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/punto-calma.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/punto-calma.jpg",
    "medida": "10 ml.",
    "desc": "Un bálsamo que es la versión cremosa del clásico Roll on No más jaquecas. Al aplicarlo con suaves masajes en los puntos de tensión, liberas el aroma de los aceites esenciales para calmar el dolor de cabeza, náuseas, el estrés del día a día y dolores musculares leves.",
    "variantes": [
@@ -629,7 +629,7 @@
     "bienestar"
    ],
    "nombre": "Inhalador nasal Eucamint",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/inhalador.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/inhalador.jpg",
    "desc": "Está cargado exclusivamente con aceites esenciales puros, sin fragancias artificiales ni fijadores químicos.\nLibre de agentes sintéticos agresivos: a diferencia de los inhaladores comerciales comunes, no contiene alcanfor sintético, mentol artificial ni derivados del petróleo.\nNo solo huelen a un ingrediente; se combinan varios aceites para entregar bienestar al respirar y descongestionar la zona nasal.",
    "variantes": [
     {
@@ -645,7 +645,7 @@
     "cuerpo"
    ],
    "nombre": "Manteca corporal",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/manteca.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/manteca.jpg",
    "nota": "*Elaboración en base a pedidos especiales",
    "desc": "Una manteca corporal natural hecha con manteca de karité y aceites naturales ofrece una hidratación profunda y duradera gracias a sus grasas vegetales ricas en vitamina E. La manteca de karité nutre la piel, mejora su elasticidad y ayuda a reparar zonas secas o agrietadas.\nEl resultado es una piel más suave, flexible y saludable, sin químicos agresivos y con una absorción que respeta el equilibrio natural de la piel.",
    "variantes": [
@@ -666,7 +666,7 @@
     "cuerpo"
    ],
    "nombre": "Pulpa nutritiva",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/pulpa.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/pulpa.jpg",
    "nota": "Manos y codos",
    "desc": "Los beneficios de utilizar una pulpa nutritiva natural de manos y codos formulada con manteca de karité y aceite de almendras se centran en su capacidad única para transformar las zonas más secas y castigadas del cuerpo desde la primera aplicación.\nLa manteca de karité actúa como un poderoso regenerador celular que alivia la tirantez, calma las irritaciones causadas por factores ambientales y suaviza las callosidades más rebeldes.",
    "variantes": [
@@ -683,7 +683,7 @@
     "cuerpo"
    ],
    "nombre": "Crema sólida de manos y codos",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/manos.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/manos.jpg",
    "nota": "*Elaboración en base a pedidos especiales",
    "desc": "Una crema sólida de manos ofrece hidratación intensa en un formato práctico y duradero. Al estar hecha con mantecas y aceites vegetales, crea una capa protectora que nutre profundamente la piel, suaviza zonas secas y ayuda a reparar grietas. Además, rinde más que una crema líquida, no contiene agua ni conservantes y se derrite con el calor de las manos, dejando la piel suave, protegida y flexible por más tiempo.",
    "variantes": [
@@ -704,7 +704,7 @@
     "labios"
    ],
    "nombre": "Lip gloss",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/gloss.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/gloss.jpg",
    "desc": "Un lip gloss natural con aceite de ricino y vitamina E hidrata profundamente los labios, aporta brillo sin sensación pegajosa, ayuda a reparar y suavizar la piel reseca, protege contra la resequedad ambiental gracias a su efecto sellador, promueve labios más suaves de forma natural y ofrece un acabado nutritivo ideal para uso diario.",
    "variantes": [
     {
@@ -720,7 +720,7 @@
     "rostro"
    ],
    "nombre": "Desmaquillante sólido",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/desmaquillante.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/desmaquillante.jpg",
    "desc": "El desmaquillante sólido, generalmente formulado a base de aceites, mantecas vegetales y emulsionantes, ha ganado terreno como una alternativa eficiente, limpia y sostenible frente a los aceites o aguas micelares tradicionales.\nNo contiene agua en su fórmula, lo que concentra sus ingredientes activos y reduce la necesidad de conservantes químicos agresivos.\nSe presenta como un bálsamo compacto que se funde y se transforma en un aceite sedoso al entrar en contacto con el calor de la piel.\nSuele estar elaborado con ingredientes como manteca de karité, aceite de coco, de almendras o de jojoba.\nSu empaque suele ser de cartón reciclable, aluminio o viene completamente libre de envase, eliminando el uso de plásticos de un solo uso.",
    "variantes": [
     {
@@ -737,7 +737,7 @@
     "bienestar"
    ],
    "nombre": "Perfume sólido",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/perfume.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/perfume.jpg",
    "desc": "Nuestro perfume sólido y natural es una alternativa ecológica y saludable a las fragancias tradicionales. Está compuesto por ceras vegetales, manteca de karité y aceites esenciales puros. Sus principales beneficios se enfocan en la portabilidad, el cuidado de la piel y el respeto por el medio ambiente. Es cómodo de transportar, sin químicos agresivos, apto para pieles sensibles y forma parte de la cosmética cero basura.",
    "variantes": [
     {
@@ -753,7 +753,7 @@
     "labios"
    ],
    "nombre": "Bálsamo de labios",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/labial.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/labial.jpg",
    "desc": "Un bálsamo labial vegano hecho con manteca de cacao, vitamina E y cera candelilla hidrata profundamente los labios, los protege de la resequedad y las grietas gracias a la manteca de cacao, aporta antioxidantes que reparan y suavizan mediante la vitamina E, y crea una barrera ligera y duradera con la cera candelilla sin dejar sensación pegajosa, logrando labios más suaves, nutridos y naturalmente protegidos.",
    "variantes": [
     {
@@ -769,7 +769,7 @@
     "bienestar"
    ],
    "nombre": "Roll on de aceites esenciales",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/rollon.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/rollon.jpg",
    "desc": "Roll on de aceites esenciales. Elige tu variedad.",
    "variantes": [
     {
@@ -805,7 +805,7 @@
     "bienestar"
    ],
    "nombre": "Brumas",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/brumas.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/brumas.jpg",
    "desc": "Variedades: Relax, Limpieza y protección, Abundancia y prosperidad, Amor propio.",
    "variantes": [
     {
@@ -834,7 +834,7 @@
     "bienestar"
    ],
    "nombre": "Sales de baño",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/sales.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/sales.jpg",
    "desc": "Variedades: Relax, Limpieza y protección, Abundancia y prosperidad, Amor propio.",
    "variantes": [
     {
@@ -862,7 +862,7 @@
     "bienestar"
    ],
    "nombre": "Secretos de Alquimia",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/alquimia.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/alquimia.jpg",
    "desc": "Kits de aromaterapia. Variedades: Relax, Limpieza y protección, Abundancia y prosperidad, Amor propio.",
    "opcion": {
     "nombre": "Variedad",
@@ -894,7 +894,7 @@
     "bienestar"
    ],
    "nombre": "Triple pack de jabones",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/triple.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/triple.jpg",
    "desc": "Contiene 3 jabones de 60 grs aprox:\n• 1 jabón de miel: Abre caminos\n• 1 jabón de ruda: Limpieza y protección\n• 1 jabón de canela: Abundancia y prosperidad",
    "variantes": [
     {
@@ -910,7 +910,7 @@
     "cuerpo"
    ],
    "nombre": "Desodorantes",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/desodorantes.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/desodorantes.jpg",
    "desc": "El desodorante natural ofrece beneficios como permitir que la piel respire, neutralizar olores con ingredientes suaves (como aceites esenciales, bicarbonato o arcilla) y evitar irritaciones porque no contiene alcoholes fuertes ni químicos sintéticos. Además, respeta el equilibrio natural de la flora bacteriana de las axilas.",
    "variantes": [
     {
@@ -943,7 +943,7 @@
     "accesorios"
    ],
    "nombre": "Saquitos terapéuticos de semilla",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/saquitos.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/saquitos.jpg",
    "desc": "Ofrecen un calor natural, que ayuda a relajar el cuerpo sin necesidad de electricidad ni productos químicos. Sus beneficios son:\n• Alivian dolores musculares y tensiones gracias al calor profundo que entregan las semillas.\n• Reducen el estrés y mejoran el descanso, proporcionando una sensación de bienestar y relajación.\n• Ayudan en cólicos, molestias menstruales y dolores articulares. Pueden usarse fríos para desinflamar golpes o bajar hinchazones.\n• Incorporamos hierbas y aceites como lavanda y eucalipto.",
    "variantes": [
     {
@@ -972,7 +972,7 @@
     "bano"
    ],
    "nombre": "Lufas exfoliantes naturales",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/lufas.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/lufas.jpg",
    "desc": "Las lufas naturales son esponjas vegetales biodegradables que ayudan a exfoliar suavemente la piel, removiendo células muertas y estimulando la circulación. A diferencia de las esponjas sintéticas, no contienen plásticos ni químicos, por lo que son más respetuosas con el medioambiente. Favorecen una limpieza profunda y, al ser 100% naturales, son ideales para rutinas de autocuidado más conscientes y sostenibles. Además, su textura firme mejora la absorción de cremas y aceites después del baño, dejando la piel más suave y revitalizada.",
    "variantes": [
     {
@@ -993,7 +993,7 @@
     "cabello"
    ],
    "nombre": "Cepillos de cerdas naturales",
-   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/img/cepillos.jpg",
+   "img": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/img/cepillos.jpg",
    "desc": "Los cepillos de cerdas naturales se han convertido en el secreto mejor guardado para quienes buscan mejorar la salud de su cabello de forma orgánica. A diferencia de los cepillos de plástico o nailon, que suelen ser rígidos y agresivos, las cerdas naturales poseen una estructura microscópica muy similar a la del cabello humano, lo que les confiere propiedades únicas.\nEl mayor beneficio de estos cepillos radica en su capacidad para realizar un acondicionamiento natural.",
    "variantes": [
     {
