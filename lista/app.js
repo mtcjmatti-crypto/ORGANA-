@@ -151,13 +151,13 @@ function verPedido(){
   avisoEnt(); abrir("#hPedido");
 }
 $("#verPedido").onclick=verPedido;
-function avisoEnt(){const r=$("#eRet").checked;$("#pDirW").hidden=r;$("#pDir").required=!r;$("#pAviso").textContent=r?(DATA.tienda.puntoVenta?`Retiro en ${DATA.tienda.puntoVenta}.`:"El lugar de retiro se coordina al confirmar."):"El valor del despacho se coordina al confirmar.";}
+function avisoEnt(){const r=$("#eRet").checked;$("#pDirW").hidden=r;$("#pDir").required=!r;$("#pAviso").textContent=r?(DATA.tienda.puntoVenta?`Retiro en nuestra tienda física: ${DATA.tienda.puntoVenta}, con previa coordinación por WhatsApp.`:"El lugar de retiro se coordina al confirmar."):"La entrega se hace con previa coordinación anticipada; el valor del despacho se confirma por WhatsApp.";}
 $("#eRet").onchange=avisoEnt; $("#eDes").onchange=avisoEnt;
 $("#pVaciar").onclick=()=>{carro={};cambioCarro();cerrar();toast("Pedido vaciado");};
 $("#pForm").addEventListener("submit",e=>{
   e.preventDefault(); const ls=lineas(); if(!ls.length||waNum().length<8) return;
   const tot=ls.reduce((s,l)=>s+l.v.precio*l.n,0), r=$("#eRet").checked;
-  let t=`Hola Organa, quiero hacer este pedido:\n\n${ls.map(l=>`• ${l.n} x ${l.p.nombre}${detTxt(l)?" ("+detTxt(l)+")":""} - ${fmt(l.v.precio*l.n)}`).join("\n")}\n\nTotal: ${fmt(tot)}\n\nNombre: ${$("#pNom").value.trim()}\nEntrega: ${r?"Retiro"+(DATA.tienda.puntoVenta?" en "+DATA.tienda.puntoVenta:""):"Despacho a "+$("#pDir").value.trim()}`;
+  let t=`Hola Organa, quiero hacer este pedido:\n\n${ls.map(l=>`• ${l.n} x ${l.p.nombre}${detTxt(l)?" ("+detTxt(l)+")":""} - ${fmt(l.v.precio*l.n)}`).join("\n")}\n\nTotal: ${fmt(tot)}\n\nNombre: ${$("#pNom").value.trim()}\nEntrega: ${r?"Retiro"+(DATA.tienda.puntoVenta?" en tienda física ("+DATA.tienda.puntoVenta+")":""):"Despacho a "+$("#pDir").value.trim()}`;
   const nota=$("#pNota").value.trim(); if(nota) t+=`\nComentario: ${nota}`;
   const diag=window.Asesora&&Asesora.resumen(); if(diag) t+=`\n\nLo que me pasa: ${diag}`;
   const a=document.createElement("a"); a.href=waLink(t); a.target="_blank"; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove();

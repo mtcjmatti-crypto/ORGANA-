@@ -4,9 +4,9 @@
   "nombre": "Organa",
   "whatsapp": "56964951526",
   "instagram": "organaiquique",
-  "puntoVenta": "",
+  "puntoVenta": "Juan Martínez 1334, Iquique",
   "ciudad": "Iquique",
-  "mapa": "",
+  "mapa": "https://www.google.com/maps/search/?api=1&query=Juan+Mart%C3%ADnez+1334%2C+Iquique%2C+Chile",
   "feria": "",
   "horarios": [
    {
@@ -52,7 +52,7 @@
     "hasta": "19:00"
    }
   ],
-  "notaHorario": "Horario de retiro a coordinar por WhatsApp.",
+  "notaHorario": "Retiros y entregas con previa coordinación anticipada por WhatsApp.",
   "link": "https://mtcjmatti-crypto.github.io/ORGANA-/lista/"
  },
  "categorias": [
