@@ -81,7 +81,7 @@ function guardarAbiertas(){store("organa-abiertas",JSON.stringify([...abiertas])
 function grupos(){
   const vistos=new Set();
   return DATA.categorias.map(c=>{
-    const ps=visibles().filter(p=>p.cat&&p.cat[0]===c.id&&!vistos.has(p.id));
+    const ps=visibles().filter(p=>p.cat&&p.cat.includes(c.id));
     ps.forEach(p=>vistos.add(p.id));
     return {c,ps};
   }).concat([{c:{id:"_otros",nombre:"Otros"},ps:visibles().filter(p=>!vistos.has(p.id))}]).filter(g=>g.ps.length);
@@ -230,6 +230,7 @@ function guardarCarro(){store("organa-carro",JSON.stringify(carro));}
 const prod=id=>DATA.productos.find(p=>p.id===id);
 function limpiarCarro(){carro=carro.filter(it=>{const p=prod(it.id);return p&&p.estado==="disponible"&&p.variantes[it.v];});}
 function agregar(p,i,op,n){
+  if(!p||p.estado!=="disponible") return;
   const key=p.id+"|"+i+"|"+(op||"");
   const ex=carro.find(it=>it.key===key);
   if(ex) ex.n+=n; else carro.push({key,id:p.id,v:i,op,n});
@@ -713,7 +714,7 @@ window.OrganaTienda={
   abrirPedido:()=>{ pintarCarro(); abrir("#carro"); }
 };
 if(window.Asesora){
-  Asesora.init({tienda:window.OrganaTienda,flor:"deco/peonia.png",flor2:"deco/eucalipto.png"});
+  Asesora.init({tienda:window.OrganaTienda,flor:"deco/lavanda.png",flor2:"deco/eucalipto.png"});
   document.querySelectorAll("[data-asesora]").forEach(b=>b.onclick=()=>Asesora.abrir());
 }
 cargar().then(()=>{ if(window.Asesora&&DATA) setTimeout(()=>Asesora.abrirSiPrimeraVez(),400); });
