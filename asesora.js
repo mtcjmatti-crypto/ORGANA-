@@ -123,9 +123,9 @@ function css(){
   if(document.getElementById("asesora-css")) return;
   const s=document.createElement("style"); s.id="asesora-css";
   s.textContent=`
-.as-fondo{position:fixed;inset:0;z-index:80;background:linear-gradient(170deg,#ece2fa 0%,#f8f3ff 55%,#f3ecfb 100%);overflow:auto;-webkit-overflow-scrolling:touch;color:#3b2d4f;font-family:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+.as-fondo{position:fixed;inset:0;z-index:80;background:linear-gradient(170deg,#ece2fa 0%,#f8f3ff 55%,#f3ecfb 100%);overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;color:#3b2d4f;font-family:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
 .as-fondo[hidden]{display:none!important}
-.as-caja{position:relative;max-width:560px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(22px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+.as-caja{position:relative;overflow-x:clip;max-width:560px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(22px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
 .as-flor{position:absolute;pointer-events:none;opacity:.5;width:150px;right:-30px;top:20px;transform:rotate(14deg)}
 .as-flor.b{left:-40px;right:auto;top:auto;bottom:30px;width:120px;transform:rotate(-20deg)}
 .as-top{display:flex;align-items:center;gap:10px;min-height:40px;position:relative;z-index:1}
@@ -318,7 +318,14 @@ function resultados(){
 window.Asesora={
   init(c){ cfg=c||{}; },
   abrir(){ abrir(true); },
-  abrirSiPrimeraVez(){ if(!leer("visto")) abrir(true); },
+  /* Se abre al inicio de cada visita (por el flyer o por el link normal). Si recarga en la misma visita, no se repite. */
+  abrirSiPrimeraVez(){
+    if(/#admin/.test(location.hash)) return;
+    let ya=false; try{ ya=sessionStorage.getItem(LS+"-sesion")==="1"; }catch(e){}
+    if(ya) return;
+    try{ sessionStorage.setItem(LS+"-sesion","1"); }catch(e){}
+    abrir(true);
+  },
   resumen
 };
 })();
