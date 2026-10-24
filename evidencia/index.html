@@ -74,11 +74,21 @@ h1{font-family:"Permanent Marker",cursive;font-weight:400;font-size:clamp(1.9rem
 
   <section class="veredicto">
     <p><strong>Veredicto: culpable.</strong> Pero tranqui, tiene solución 100% natural y hecha en Iquique.</p>
-    <a class="btn btn-lila" href="../" data-goatcounter-click="ir-a-organa" data-goatcounter-title="Botón: ver catálogo Organa">Ver la evidencia completa →</a>
+    <a class="btn btn-lila" href="../" id="irOrgana">Ver la evidencia completa →</a>
     <a class="btn btn-wsp" href="https://wa.me/56975141739?text=Hola%2C%20escane%C3%A9%20el%20QR%20%F0%9F%91%80%20quiero%20ver%20productos" target="_blank" rel="noopener" data-goatcounter-click="whatsapp-desde-flyer" data-goatcounter-title="Botón: WhatsApp desde el flyer">Prefiero confesar por WhatsApp</a>
   </section>
 
   <div class="marca"><img src="../img/logo.png" alt=""><span><b>Organa</b>Cosmética natural · @matti_w.w</span></div>
 </main>
+<script>
+/* Cuenta el clic hacia el catálogo antes de salir de la página */
+document.getElementById("irOrgana").addEventListener("click",function(e){
+  var a=this, gc=window.goatcounter;
+  if(!gc||typeof gc.count!=="function") return;
+  e.preventDefault();
+  try{ gc.count({path:"ir-a-organa",title:"Botón: ver catálogo Organa",event:true}); }catch(x){}
+  setTimeout(function(){ location.href=a.href; },350);
+});
+</script>
 </body>
 </html>
