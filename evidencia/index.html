@@ -22,7 +22,7 @@ body{margin:0;color:var(--tinta);font-family:"Nunito Sans",system-ui,-apple-syst
 .deco img.lila{filter:hue-rotate(38deg) saturate(.85)}
 @keyframes d1{0%{transform:translate(0,0) rotate(var(--r))}100%{transform:translate(30px,-50px) rotate(calc(var(--r) + 16deg)) scale(1.08)}}
 @keyframes d2{0%{transform:translate(0,0) rotate(var(--r))}100%{transform:translate(-40px,40px) rotate(calc(var(--r) - 14deg)) scale(.94)}}
-main{max-width:520px;margin:0 auto;padding:max(28px,env(safe-area-inset-top)) 20px 40px;text-align:center}
+main{overflow-x:clip;max-width:520px;margin:0 auto;padding:max(28px,env(safe-area-inset-top)) 20px 40px;text-align:center}
 .sello{display:inline-block;font-family:"Permanent Marker",cursive;color:#c0392b;border:3px solid #c0392b;border-radius:8px;padding:4px 12px;font-size:.95rem;letter-spacing:.06em;transform:rotate(-4deg);opacity:0;animation:aparece .5s .1s ease-out forwards}
 h1{font-family:"Permanent Marker",cursive;font-weight:400;font-size:clamp(1.9rem,8.4vw,2.6rem);line-height:1.12;margin:18px 0 6px;opacity:0;animation:aparece .5s .3s ease-out forwards}
 .giro{font-size:1.15rem;color:var(--suave);margin:0 0 6px;opacity:0;animation:aparece .5s .9s ease-out forwards}
@@ -30,7 +30,7 @@ h1{font-family:"Permanent Marker",cursive;font-weight:400;font-size:clamp(1.9rem
 @keyframes aparece{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .sello{animation-name:aparece2}@keyframes aparece2{from{opacity:0;transform:rotate(-4deg) scale(1.4)}to{opacity:1;transform:rotate(-4deg)}}
 
-.fotos{display:flex;justify-content:center;align-items:flex-start;margin:26px -8px 6px;padding-top:10px}
+.fotos{display:flex;justify-content:center;align-items:flex-start;margin:26px 0 6px;padding-top:10px}
 .pol{position:relative;flex:0 0 35%;background:#fff;padding:7px 7px 9px;box-shadow:0 10px 24px rgba(70,40,110,.18);border-radius:3px;margin:0 -1px;opacity:0;animation:cae .6s ease-out forwards}
 .pol .f{aspect-ratio:1/1;background:#eee center/cover}
 .pol span{display:block;margin-top:7px;font-family:"Permanent Marker",cursive;font-size:clamp(.68rem,2.9vw,.85rem);line-height:1.15;color:var(--tinta);min-height:2.3em}
@@ -40,7 +40,16 @@ h1{font-family:"Permanent Marker",cursive;font-weight:400;font-size:clamp(1.9rem
 .p3{--g:8deg;margin-top:18px;animation-delay:1.7s;z-index:1}
 @keyframes cae{from{opacity:0;transform:translateY(-30px) rotate(calc(var(--g) - 12deg)) scale(1.1)}to{opacity:1;transform:rotate(var(--g))}}
 
-.veredicto{background:var(--papel);border-radius:22px;padding:18px 18px 20px;box-shadow:0 6px 22px rgba(90,60,140,.12);margin-top:18px;opacity:0;animation:aparece .5s 2.1s ease-out forwards}
+.sint{margin-top:20px;text-align:left;opacity:0;animation:aparece .5s 2s ease-out forwards}
+.sint h2{font-family:"Permanent Marker",cursive;font-weight:400;font-size:1.3rem;text-align:center;margin:0 0 4px}
+.sint>p{text-align:center;color:var(--suave);margin:0 0 12px;font-size:.95rem}
+.caso{display:grid;grid-template-columns:86px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--papel);border-radius:18px;padding:9px 12px 9px 9px;margin-bottom:9px;box-shadow:0 4px 16px rgba(90,60,140,.1);text-decoration:none;color:inherit}
+.caso .f{width:86px;height:86px;border-radius:13px;background:#eee center/cover}
+.caso b{display:block;font-size:1rem;line-height:1.25}
+.caso span{display:block;font-size:.88rem;color:var(--suave);margin-top:3px}
+.caso span em{font-style:normal;font-weight:800;color:var(--lila-osc)}
+.caso i{font-style:normal;color:var(--lila);font-size:1.3rem;font-weight:800}
+.veredicto{background:var(--papel);border-radius:22px;padding:18px 18px 20px;box-shadow:0 6px 22px rgba(90,60,140,.12);margin-top:18px;opacity:0;animation:aparece .5s 2.4s ease-out forwards}
 .veredicto p{margin:0 0 14px;color:var(--suave)}
 .veredicto strong{color:var(--tinta)}
 .btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:16px 20px;font-weight:800;font-size:1.06rem;text-decoration:none}
@@ -71,21 +80,31 @@ h1{font-family:"Permanent Marker",cursive;font-weight:400;font-size:clamp(1.9rem
     <div class="pol p3"><div class="f" style="background-image:url('../img/rollon.jpg')"></div><span>Evidencia C: el estrés que cargas</span></div>
   </div>
 
+  <section class="sint">
+    <h2>¿Tienes alguno de estos síntomas?</h2>
+    <p>Estas son las soluciones:</p>
+    <a class="caso ir" href="../" data-ev="sintoma-piel-seca"><span class="f" style="background-image:url('img/piel-seca.jpg')"></span><span><b>Piel seca y tirante</b><span>Solución: <em>Ácido hialurónico</em></span></span><i>›</i></a>
+    <a class="caso ir" href="../" data-ev="sintoma-granitos"><span class="f" style="background-image:url('img/granitos.jpg')"></span><span><b>Granitos y poros abiertos</b><span>Solución: <em>Barra de limpieza facial</em></span></span><i>›</i></a>
+    <a class="caso ir" href="../" data-ev="sintoma-talones"><span class="f" style="background-image:url('img/talones.jpg')"></span><span><b>Talones ásperos o partidos</b><span>Solución: <em>Bálsamo de pies</em></span></span><i>›</i></a>
+  </section>
+
   <section class="veredicto">
     <p><strong>Veredicto: culpable.</strong> Pero tranqui, tiene solución 100% natural y hecha en Iquique.</p>
-    <a class="btn btn-lila" href="../" id="irOrgana">Ver la evidencia completa →</a>
+    <a class="btn btn-lila ir" href="../" id="irOrgana" data-ev="ir-a-organa">Ver la evidencia completa →</a>
   </section>
 
   <div class="marca"><img src="../img/logo.png" alt=""><span><b>Organa</b>Cosmética natural · @matti_w.w</span></div>
 </main>
 <script>
-/* Cuenta el clic hacia el catálogo antes de salir de la página */
-document.getElementById("irOrgana").addEventListener("click",function(e){
-  var a=this, gc=window.goatcounter;
-  if(!gc||typeof gc.count!=="function") return;
-  e.preventDefault();
-  try{ gc.count({path:"ir-a-organa",title:"Botón: ver catálogo Organa",event:true}); }catch(x){}
-  setTimeout(function(){ location.href=a.href; },350);
+/* Cuenta cada clic hacia el catálogo antes de salir de la página */
+document.querySelectorAll("a.ir").forEach(function(a){
+  a.addEventListener("click",function(e){
+    var gc=window.goatcounter;
+    if(!gc||typeof gc.count!=="function") return;
+    e.preventDefault();
+    try{ gc.count({path:a.dataset.ev,title:a.textContent.trim().slice(0,60),event:true}); }catch(x){}
+    setTimeout(function(){ location.href=a.href; },350);
+  });
 });
 </script>
 </body>
