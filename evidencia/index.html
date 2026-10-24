@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#f6f1fc">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>La evidencia</title>
+<meta name="description" content="Acá está toda la evidencia de lo que hiciste.">
+<link rel="icon" href="../img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Federo&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700;6..12,800&display=swap">
+<style>
+:root{--tinta:#3b2d4f;--suave:#6f6382;--lila:#8a5cc2;--lila-osc:#68429e;--lila-claro:#ece2fa;--papel:#fffdff;--wsp:#2f8f55;color-scheme:light only}
+*{box-sizing:border-box}
+html{background:linear-gradient(180deg,#f6f1fc 0,#f1e8fb 50%,#faf6ff 100%) fixed;background-color:#f6f1fc}
+body{margin:0;color:var(--tinta);font-family:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+.deco{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.deco img{position:absolute;opacity:.45;animation:var(--a) var(--t) ease-in-out infinite alternate}
+.deco img.lila{filter:hue-rotate(38deg) saturate(.85)}
+@keyframes d1{0%{transform:translate(0,0) rotate(var(--r))}100%{transform:translate(30px,-50px) rotate(calc(var(--r) + 16deg)) scale(1.08)}}
+@keyframes d2{0%{transform:translate(0,0) rotate(var(--r))}100%{transform:translate(-40px,40px) rotate(calc(var(--r) - 14deg)) scale(.94)}}
+main{max-width:520px;margin:0 auto;padding:max(28px,env(safe-area-inset-top)) 20px 40px;text-align:center}
+.sello{display:inline-block;font-family:"Permanent Marker",cursive;color:#c0392b;border:3px solid #c0392b;border-radius:8px;padding:4px 12px;font-size:.95rem;letter-spacing:.06em;transform:rotate(-4deg);opacity:0;animation:aparece .5s .1s ease-out forwards}
+h1{font-family:"Permanent Marker",cursive;font-weight:400;font-size:clamp(1.9rem,8.4vw,2.6rem);line-height:1.12;margin:18px 0 6px;opacity:0;animation:aparece .5s .3s ease-out forwards}
+.giro{font-size:1.15rem;color:var(--suave);margin:0 0 6px;opacity:0;animation:aparece .5s .9s ease-out forwards}
+.giro b{display:block;font-family:"Federo",serif;font-weight:400;font-size:clamp(1.7rem,7.4vw,2.2rem);color:var(--lila-osc);line-height:1.15;margin-top:4px}
+@keyframes aparece{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.sello{animation-name:aparece2}@keyframes aparece2{from{opacity:0;transform:rotate(-4deg) scale(1.4)}to{opacity:1;transform:rotate(-4deg)}}
+
+.fotos{display:flex;justify-content:center;align-items:flex-start;margin:26px -8px 6px;padding-top:10px}
+.pol{position:relative;flex:0 0 35%;background:#fff;padding:7px 7px 9px;box-shadow:0 10px 24px rgba(70,40,110,.18);border-radius:3px;margin:0 -1px;opacity:0;animation:cae .6s ease-out forwards}
+.pol .f{aspect-ratio:1/1;background:#eee center/cover}
+.pol span{display:block;margin-top:7px;font-family:"Permanent Marker",cursive;font-size:clamp(.68rem,2.9vw,.85rem);line-height:1.15;color:var(--tinta);min-height:2.3em}
+.pol::before{content:"";position:absolute;top:-9px;left:50%;width:46px;height:16px;margin-left:-23px;background:rgba(214,196,240,.85);transform:rotate(-3deg)}
+.p1{--g:-7deg;margin-top:14px;animation-delay:1.2s;z-index:1}
+.p2{--g:2deg;z-index:2;animation-delay:1.45s}
+.p3{--g:8deg;margin-top:18px;animation-delay:1.7s;z-index:1}
+@keyframes cae{from{opacity:0;transform:translateY(-30px) rotate(calc(var(--g) - 12deg)) scale(1.1)}to{opacity:1;transform:rotate(var(--g))}}
+
+.veredicto{background:var(--papel);border-radius:22px;padding:18px 18px 20px;box-shadow:0 6px 22px rgba(90,60,140,.12);margin-top:18px;opacity:0;animation:aparece .5s 2.1s ease-out forwards}
+.veredicto p{margin:0 0 14px;color:var(--suave)}
+.veredicto strong{color:var(--tinta)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:16px 20px;font-weight:800;font-size:1.06rem;text-decoration:none}
+.btn-lila{background:var(--lila);color:#fff;box-shadow:0 8px 22px rgba(138,92,194,.32);animation:late 2.4s 3s ease-in-out infinite}
+@keyframes late{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+.btn-wsp{margin-top:10px;background:transparent;color:var(--wsp);box-shadow:inset 0 0 0 2px #cfe6d7;font-size:.95rem;padding:12px 18px}
+.marca{margin-top:26px;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--suave);font-size:.85rem}
+.marca img{width:40px}
+.marca b{font-family:"Federo",serif;font-weight:400;font-size:1.25rem;color:var(--tinta);display:block;line-height:1}
+@media (prefers-reduced-motion:reduce){.btn-lila{animation:none}}
+</style>
+<script data-goatcounter="https://matti-organa.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="deco" aria-hidden="true">
+  <img src="../deco/lavanda.png" alt="" style="top:6%;left:-10px;width:54px;--r:-10deg;--t:20s;--a:d1">
+  <img src="../deco/peonia.png" class="lila" alt="" style="top:38%;right:-50px;width:140px;--r:12deg;--t:26s;--a:d2">
+  <img src="../deco/eucalipto.png" alt="" style="bottom:6%;left:-28px;width:100px;--r:-24deg;--t:24s;--a:d1">
+  <img src="../deco/petalos.png" class="lila" alt="" style="top:2%;right:6%;width:80px;--r:30deg;--t:28s;--a:d2">
+</div>
+<main>
+  <span class="sello">EXPEDIENTE Nº 0427</span>
+  <h1>📸 Acá está toda la evidencia de lo que hiciste…</h1>
+  <p class="giro">Te pillamos con las manos en la masa:<b>llevas semanas sin consentirte. 😏</b></p>
+
+  <div class="fotos" aria-label="Evidencias">
+    <div class="pol p1"><div class="f" style="background-image:url('../img/hialuronico.jpg')"></div><span>Evidencia A: tu piel pidiendo agua</span></div>
+    <div class="pol p2"><div class="f" style="background-image:url('../img/shampoo-solido.jpg')"></div><span>Evidencia B: tu pelo ya no es el mismo</span></div>
+    <div class="pol p3"><div class="f" style="background-image:url('../img/rollon.jpg')"></div><span>Evidencia C: el estrés que cargas</span></div>
+  </div>
+
+  <section class="veredicto">
+    <p><strong>Veredicto: culpable.</strong> Pero tranqui, tiene solución 100% natural y hecha en Iquique.</p>
+    <a class="btn btn-lila" href="../" data-goatcounter-click="ir-a-organa" data-goatcounter-title="Botón: ver catálogo Organa">Ver la evidencia completa →</a>
+    <a class="btn btn-wsp" href="https://wa.me/56975141739?text=Hola%2C%20escane%C3%A9%20el%20QR%20%F0%9F%91%80%20quiero%20ver%20productos" target="_blank" rel="noopener" data-goatcounter-click="whatsapp-desde-flyer" data-goatcounter-title="Botón: WhatsApp desde el flyer">Prefiero confesar por WhatsApp</a>
+  </section>
+
+  <div class="marca"><img src="../img/logo.png" alt=""><span><b>Organa</b>Cosmética natural · @matti_w.w</span></div>
+</main>
+</body>
+</html>
